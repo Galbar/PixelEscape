@@ -10,8 +10,8 @@ all: $(SOURCES) $(EXECUTABLE)
 clean:
 	rm -rf *o $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS) src/main.cpp
-	$(CC) src/main.cpp $(LDFLAGS) $(OBJECTS) -o $@
+$(EXECUTABLE): $(OBJECTS) main.cpp
+	$(CC) main.cpp $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
