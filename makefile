@@ -1,7 +1,7 @@
 CC = g++
-CFLAGS = -c -Wall
+CFLAGS = -c -Wall -I./HEADERS
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-SOURCES = 
+SOURCES = $(wildcard SOURCES/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = game
 
