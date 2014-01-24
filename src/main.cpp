@@ -8,6 +8,15 @@ int main()
 
     while(1)
     {
+        // HERE LOGIC UPDATES
+
+
+
+        // HERE DRAWING UPDATES
+
+
+
+
         window.display();
     }
 }
