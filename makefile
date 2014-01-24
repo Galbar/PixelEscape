@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -c -Wall
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-SOURCES = src/main.cpp
+SOURCES = 
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = game
 
@@ -11,7 +11,7 @@ clean:
 	rm -rf *o $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) src/main.cpp $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
