@@ -20,7 +20,6 @@ GameScene::GameScene()
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
-    std::cerr << "lolG1" << std::endl;
     // Load and Parse the level
     sf::Image map_image;
     if (not map_image.loadFromFile(path))
@@ -45,9 +44,9 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
 // Get required color
     m_required_color = m_map[0][0];
     m_map[0][0] = Tile(sf::Color::White);
-    std::cerr << "lolG2" << std::endl;
     m_player = new Player(m_x_begin, m_y_begin, m_window);
-    std::cerr << "lolG3" << std::endl;
+
+    if (!m_tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
 }
 
 GameScene::~GameScene()
@@ -60,7 +59,6 @@ void GameScene::update()
 
     m_player->update();
 
-    std::cerr << "lolGS1" << std::endl;
     sf::Vector2i p = m_player->getPos(0);
     if (m_map[p.x][p.y].r)
         m_player->killRGB(0);
@@ -80,30 +78,26 @@ void GameScene::update()
     {
         // WIN!
     }
-    std::cerr << "lolGS2" << std::endl;
 }
 
 void GameScene::draw()
 {
-    std::cerr << "lol" << std::endl;
-    int tile_size = 32;
+    int tile_size = 16;
     Scene::draw();
-    sf::Texture tilemap;
-    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
     int tilemap_size = 8;
     sf::Sprite sprite;
-    sprite.setTexture(tilemap);
+    sprite.setTexture(m_tilemap);
     sf::Vector2i active_pos = m_player->getActivePos();
-    active_pos.x = max(active_pos.x, 10);
-    active_pos.x = min(active_pos.x, m_map.size()-11);
-    active_pos.y = max(active_pos.y, 10);
-    active_pos.y = min(active_pos.y, m_map[0].size()-11);
+    active_pos.x = max(active_pos.x, 21);
+    active_pos.x = min(active_pos.x, m_map.size()-22);
+    active_pos.y = max(active_pos.y, 21);
+    active_pos.y = min(active_pos.y, m_map[0].size()-22);
     std::cerr << active_pos.x << " " << active_pos.y << std::endl;
-    for (int x = active_pos.x-10; x <= active_pos.x+10; x++)
+    for (int x = active_pos.x-21; x <= active_pos.x+21; x++)
     {
-        for (int y = active_pos.y-10; y <= active_pos.y+10; y++)
+        for (int y = active_pos.y-21; y <= active_pos.y+21; y++)
         {
-            sprite.setPosition(tile_size*x, tile_size*y);
+            sprite.setPosition(tile_size*(x+21-active_pos.x), tile_size*(y+21-active_pos.y));
             int num = m_map[x][y].index;
             int tx = (num%tilemap_size)*tile_size;
             int ty = (num/tilemap_size)*tile_size;
@@ -111,4 +105,5 @@ void GameScene::draw()
             m_window->draw(sprite);
         }
     }
+    m_player->draw(active_pos.x, active_pos.y);
 }

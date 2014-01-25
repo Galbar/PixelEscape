@@ -1,6 +1,16 @@
 #include "Player.hpp"
 #include <iostream>
 
+bool samePos(Component a, Component b)
+{
+    return a.x == b.x and a.y == b.y;
+}
+
+bool insideFrustum(Component a, int x, int y)
+{
+    return a.x >= x-21 and a.x <= x+21 and a.y >= y-21 and a.y <= y+21;
+}
+
 Player::Player()
 {
 
@@ -23,15 +33,16 @@ Player::Player(int x, int y, sf::RenderWindow* window)
     cfg.keyMap[SELECTG] = sf::Keyboard::Num2;
     cfg.keyMap[SELECTB] = sf::Keyboard::Num3;
     cfg.keyMap[SELECTOTHER] = sf::Keyboard::Num4;
-    std::cerr << "lolI1" << std::endl;
+
     m_input = Input(cfg.keyMap, window);
-    std::cerr << "lolI2" << std::endl;
+
     m_window = window;
 
     m_r = Component(x, y);
     m_g = Component(x, y);
     m_b = Component(x, y);
-    std::cerr << "lolI3" << std::endl;
+
+    if (!m_tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
 }
 
 Player::~Player()
@@ -41,11 +52,7 @@ Player::~Player()
 
 void Player::update()
 {
-    std::cerr << "lolP1" << std::endl;
-
     m_input.update();
-
-    std::cerr << "lolP2" << std::endl;
 
     if (m_input.getKeyDown(MOVEUP))
     {
@@ -121,12 +128,17 @@ void Player::update()
     {
 
     }
-    std::cerr << "lolP3" << std::endl;
+
+    std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
 }
 
-void Player::draw()
+void Player::draw(int cam_x, int cam_y)
 {
+    if (samePos(m_r, m_g) and samePos(m_r, m_b) and m_r.is_alive and m_g.is_alive and m_b.is_alive)
+    {
+        if (insideFrustum(m_r, x, y))
 
+    }
 }
 
 sf::Vector2i Player::getPos(int i)
@@ -157,9 +169,9 @@ sf::Vector2i Player::getActivePos()
 std::vector<bool> Player::getActiveColor()
 {
     std::vector<bool> v(3);
-    v[0] = m_r.is_active;
-    v[1] = m_g.is_active;
-    v[2] = m_b.is_active;
+    v[0] = m_r.is_active and m_r.is_alive;
+    v[1] = m_g.is_active and m_g.is_alive;
+    v[2] = m_b.is_active and m_b.is_alive;
     return v;
 }
 

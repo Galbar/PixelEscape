@@ -7,8 +7,8 @@
 #include <string>
 #include <iostream>
 
-#define WINDOW_SIZE 672
-#define TILE_COUNT 21
+#define WINDOW_SIZE 688
+#define TILE_COUNT 43
 
 struct Tile
 {
@@ -129,6 +129,7 @@ private:
     TileMatrix m_map;
     Tile m_required_color;
     Player* m_player;
+    sf::Texture m_tilemap;
     int m_x_begin; // porque se lee mejor
     int m_y_begin;
 };
