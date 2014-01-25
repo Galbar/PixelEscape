@@ -15,7 +15,7 @@ class StartScene: public Scene
 public:
 
 	StartScene();
-    Scene(sf::RenderWindow* window);
+    StartScene(sf::RenderWindow* window);
     ~StartScene();
 
 private:

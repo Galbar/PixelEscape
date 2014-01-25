@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include <string>
+
 #include "GameScene.hpp"
 #include "MenuScene.hpp"
 
