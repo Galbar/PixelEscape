@@ -8,6 +8,7 @@
 class Scene
 {
 public:
+    Scene();
     Scene(sf::RenderWindow* window);
     ~Scene();
 

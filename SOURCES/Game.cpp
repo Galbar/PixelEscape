@@ -6,6 +6,9 @@ Game::Game(sf::RenderWindow* window)
     std::string m_lvl_paths[LVL_NUMBER] = {
         "data/levels/level1.jpg"
     };
+
+    sc = new GameScene(m_window, 1, m_lvl_paths[0]);
+
 }
 
 Game::~Game()
@@ -34,11 +37,11 @@ void Game::execute()
         }
 
         // HERE LOGIC UPDATES
-
+        sc->update();
 
         m_window->clear();
         // HERE DRAWING UPDATES
-
+        sc->draw();
 
 
 
