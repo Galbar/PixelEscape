@@ -10,6 +10,7 @@
 #include "AudioPlayer.hpp"
 #include "GameScene.hpp"
 #include "MenuScene.hpp"
+#include "StartScene.hpp"
 
 #define LVL_NUMBER 1
 
