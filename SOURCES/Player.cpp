@@ -41,6 +41,8 @@ Player::Player(int x, int y, sf::RenderWindow* window)
     m_r = Component(x, y);
     m_g = Component(x, y);
     m_b = Component(x, y);
+
+    if (!m_tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
 }
 
 Player::~Player()

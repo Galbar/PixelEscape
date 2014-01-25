@@ -50,7 +50,7 @@ private:
     Component m_r;
     Component m_g;
     Component m_b;
-
+    sf::Texture m_tilemap;
     sf::RenderWindow* m_window;
 };
 #endif
