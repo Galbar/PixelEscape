@@ -6,6 +6,7 @@
 #include <SFML/Window.hpp>
 
 #include <string>
+#include <vector>
 
 #include "GameScene.hpp"
 #include "MenuScene.hpp"
@@ -21,7 +22,7 @@ public:
     void execute();
 
 private:
-    std::string m_lvl_paths[];
+    std::vector<std::string> m_lvl_paths;
     sf::RenderWindow* m_window;
     bool m_paused;
     bool m_main_menu;
