@@ -14,8 +14,10 @@ public:
     virtual void update();
     virtual void draw();
 
-private:
     sf::RenderWindow* m_window;
+
+private:
+
 };
 
 #endif

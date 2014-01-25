@@ -38,6 +38,7 @@ public:
     vector<bool> keysPressed;
     vector<bool> keysOldPressed;
     vector<float> keyValues;
+    Input();
     Input(vector<sf::Keyboard::Key> v, sf::RenderWindow* window);
 
     bool getKeyPressed(int n);
