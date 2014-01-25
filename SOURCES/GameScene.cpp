@@ -118,6 +118,16 @@ void GameScene::draw()
             int ty = (num/tilemap_size)*tile_size;
             sprite.setTextureRect(sf::IntRect(tx,ty,tile_size,tile_size));
             m_window->draw(sprite);
+            if (m_map[x][y].is_end)
+            {
+                Tile c = m_required_color;
+                int goal_mask = 4*c.r+2*c.g+c.b;
+                num = m_map[0][0].mask[goal_mask];
+                tx = (num%tilemap_size)*tile_size;
+                int ty = (num/tilemap_size)*tile_size;
+                sprite.setTextureRect(sf::IntRect(tx/2,ty,tile_size,tile_size));
+                m_window->draw(sprite);
+            }
         }
     }
     m_player->draw(active_pos.x, active_pos.y);
