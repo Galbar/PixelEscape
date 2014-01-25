@@ -7,8 +7,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "DisplayObject.hpp"
-
 class Scene
 {
 public:
@@ -22,7 +20,6 @@ public:
 protected:
 	
 	sf::RenderWindow* m_window;
- 	std::vector<DisplayObject*>  m_displayObjects;
 
 private:
 	

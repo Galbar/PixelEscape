@@ -1,7 +1,10 @@
 #include "Game.hpp"
 
+sf::RenderWindow* Game::s_window = NULL;
+
 Game::Game(sf::RenderWindow* window)
 {
+    s_window = window;
     m_window = window;
     m_lvl_paths.push_back("data/levels/level1.png");
 

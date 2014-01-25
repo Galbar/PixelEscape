@@ -2,6 +2,10 @@
 #define HUD_HPP
 
 #include <vector>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
 #include "DisplayObject.hpp"
 
 class HUD
@@ -23,6 +27,10 @@ class HUD
 
       static HUD* pHUDInstance;
       std::vector<DisplayObject*>  m_displayObjects;
+
+      sf::Text scoreLabel;
+
+      sf::RenderWindow *m_window;
 
 };
 

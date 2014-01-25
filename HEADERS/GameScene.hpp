@@ -5,6 +5,8 @@
 #include "Player.hpp"
 #include "Input.hpp"
 #include "AudioPlayer.hpp"
+#include "HUD.hpp"
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -20,6 +22,7 @@ struct Tile
     bool is_begin;
     bool is_end;
     int index;
+    vector<int> mask;
 
     char getMask()
     {
@@ -44,6 +47,7 @@ struct Tile
         is_begin = false;
         is_end = false;
         index = 0;
+        mask = vector<int> (8, 0);
     }
 
     Tile(sf::Color c)
@@ -53,6 +57,7 @@ struct Tile
         b = false;
         is_begin = false;
         is_end = false;
+        mask = vector<int> (8, 0);
         if (c == sf::Color::Black)
         {
             // nada
@@ -64,49 +69,58 @@ struct Tile
             g = true;
             b = true;
             index = 1;
+            mask[1] = 4, mask[2] = 3, mask[3] = 7, mask[4] = 2, mask[5] = 6, mask[6] =5, mask[7] = 1;
         }
         else if (c == sf::Color::Red)
         {
             r = true;
             index = 2;
+            mask[1] = 0, mask[2] = 0, mask[3] = 0, mask[4] = 2, mask[5] = 2, mask[6] = 2, mask[7] = 2;
         }
         else if (c == sf::Color::Green)
         {
             g = true;
             index = 3;
+            mask[1] = 0, mask[2] = 3, mask[3] = 3, mask[4] = 0, mask[5] = 0, mask[6] = 3, mask[7] = 3;
         }
         else if (c == sf::Color::Blue)
         {
             b = true;
             index = 4;
+            mask[1] = 4, mask[2] = 0, mask[3] = 4, mask[4] = 0, mask[5] = 4, mask[6] = 0, mask[7] = 4;
         }
         else if (c == sf::Color::Yellow)
         {
             r = true;
             g = true;
             index = 5;
+            mask[1] = 0, mask[2] = 3, mask[3] = 3, mask[4] = 2, mask[5] = 2, mask[6] = 5, mask[7] = 5;
         }
         else if (c == sf::Color::Magenta)
         {
             r = true;
             b = true;
             index = 6;
+            mask[1] = 4, mask[2] = 0, mask[3] = 4, mask[4] = 2, mask[5] = 6, mask[6] = 2, mask[7] = 6;
         }
         else if (c == sf::Color::Cyan)
         {
             g = true;
             b = true;
             index = 7;
+            mask[1] = 4, mask[2] = 3, mask[3] = 7, mask[4] = 0, mask[5] = 4, mask[6] = 3, mask[7] = 7;
         }
         else if (c == beginColor())
         {
             is_begin = true;
             index = 8;
+            mask[1] = 8, mask[2] = 8, mask[3] = 8, mask[4] = 8, mask[5] = 8, mask[6] = 8, mask[7] = 8;
         }
         else if (c == endColor())
         {
             is_end = true;
             index = 9;
+            mask[1] = 9, mask[2] = 9, mask[3] = 9, mask[4] = 9, mask[5] = 9, mask[6] = 9, mask[7] = 9;
         }
         else
         {

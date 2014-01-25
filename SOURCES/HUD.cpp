@@ -14,6 +14,20 @@ HUD* HUD::sharedHUD()
 HUD::HUD()
 {
 
+	
+
+	sf::Font font;
+
+	if (!font.loadFromFile("data/levels/PressStart2P.ttf"))
+	{
+
+	}
+
+	scoreLabel = sf::Text("score", font);
+	scoreLabel.setFont(font);
+	scoreLabel.setCharacterSize(30);
+	scoreLabel.setStyle(sf::Text::Regular);
+	
 }
 
 
@@ -24,6 +38,8 @@ void HUD::draw()
 		m_displayObjects[i]->draw();
 	}
 }
+
+
 
 void HUD::update()
 {
