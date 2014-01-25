@@ -20,7 +20,7 @@ HUD::HUD()
 
 	}
 
-	scoreLabel = sf::text("hello", font);
+	scoreLabel = sf::Text("score", font);
 	scoreLabel.setFont(font);
 	scoreLabel.setCharacterSize(30);
 	scoreLabel.setStyle(sf::Text::Regular);

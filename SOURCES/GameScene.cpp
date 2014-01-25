@@ -113,6 +113,7 @@ void GameScene::draw()
         }
     }
     m_player->draw(active_pos.x, active_pos.y);
+    
     HUD* hud = HUD::sharedHUD();
     hud->draw();
 }
