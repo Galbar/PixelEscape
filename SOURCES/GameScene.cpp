@@ -81,6 +81,8 @@ void GameScene::update()
         // WIN!
         std::cerr << "HAS GANADO!!!" << std::endl;
     }
+    HUD* hud = HUD::sharedHUD();
+    hud->update();
 }
 
 void GameScene::draw()
@@ -110,4 +112,6 @@ void GameScene::draw()
         }
     }
     m_player->draw(active_pos.x, active_pos.y);
+    HUD* hud = HUD::sharedHUD();
+    hud->draw();
 }

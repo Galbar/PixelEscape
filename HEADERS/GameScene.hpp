@@ -4,6 +4,8 @@
 #include "Scene.hpp"
 #include "Player.hpp"
 #include "Input.hpp"
+#include "HUD.hpp"
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -65,12 +67,13 @@ struct Tile
             g = true;
             b = true;
             index = 1;
-            mask[1] = 1, mask[2] = 2, mask[3] = 3, mask[4] = 4;
+            mask[1] = 1, mask[2] = 2, mask[3] = 3, mask[4] = 4, mask[5] = 5, mask[6] = 6, mask[7] = 7;
         }
         else if (c == sf::Color::Red)
         {
             r = true;
             index = 2;
+            mask[1] = 2, mask[2] = 2, mask[3] = 0, mask[4] = 0, mask[5] = 5, mask[6] = 6, mask[7] = 7;
         }
         else if (c == sf::Color::Green)
         {
