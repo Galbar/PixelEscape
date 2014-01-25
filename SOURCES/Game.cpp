@@ -31,7 +31,7 @@ Game::Game(sf::RenderWindow* window)
 
 Game::~Game()
 {
-
+    delete sc;
 }
 
 void Game::execute()

@@ -24,6 +24,11 @@ Input::Input(vector<sf::Keyboard::Key> v, sf::RenderWindow* window)
     s_input = this;
 }
 
+Input::~Input()
+{
+    delete s_input;
+}
+
 bool Input::getKeyPressed(int n)
 {
     return keysPressed[n];

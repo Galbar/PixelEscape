@@ -15,4 +15,6 @@ int main()
     Game game(window);
 
     game.execute();
+
+    delete window;
 }
