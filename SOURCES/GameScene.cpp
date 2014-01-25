@@ -79,6 +79,7 @@ void GameScene::update()
     if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end)
     {
         // WIN!
+        std::cerr << "HAS GANADO!!!" << std::endl;
     }
 }
 
