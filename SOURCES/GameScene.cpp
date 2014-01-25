@@ -1,5 +1,17 @@
 #include "GameScene.hpp"
 
+int max(int a, int b)
+{
+    if (a >= b) return a;
+    return b;
+}
+
+int min(int a, int b)
+{
+    if (a <= b) return a;
+    return b;
+}
+
 GameScene::GameScene()
 {
 
@@ -67,27 +79,27 @@ void GameScene::update()
 void GameScene::draw()
 {
     int tile_size = 32;
-    Scene::render();
+    Scene::draw();
     sf::Texture tilemap;
     if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "ERROR LOADING IMAGE" << endl;
     int tilemap_size = 8;
     sf::Sprite sprite;
     sprite.setTexture(tilemap);
     sf::Vector2i active_pos = m_player.getActivePos();
-    active_pos.x = std::max(active_pos.x, 10);
-    active_pos.x = std::min(active_pos.x, m_map.size()-11);
-    active_pos.y = std::max(active_pos.y, 10);
-    active_pos.y = std::min(active_pos.y, m_map[0].size()-11);
-    for (int x = ; x < scene_map.size(); x++)
+    active_pos.x = max(active_pos.x, 10);
+    active_pos.x = min(active_pos.x, m_map.size()-11);
+    active_pos.y = max(active_pos.y, 10);
+    active_pos.y = min(active_pos.y, m_map[0].size()-11);
+    for (int x = active_pos.x-10; x <= active_pos.x+10; x++)
     {
-        for (int y = 0; y < scene_map[x].size(); y++)
+        for (int y = active_pos.y-10; y <= active_pos.y+10; y++)
         {
             sprite.setPosition(tile_size*x, tile_size*y);
-            int num = m_map[active_pos.x][active_pos.y];
+            int num = m_map[x][y].index;
             int tx = (num%tilemap_size)*tile_size;
             int ty = (num/tilemap_size)*tile_size;
             sprite.setTextureRect(sf::IntRect(tx,ty,tile_size,tile_size));
-            window->draw(sprite);
+            m_window->draw(sprite);
         }
     }
 }
