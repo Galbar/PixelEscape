@@ -63,6 +63,28 @@ void GameScene::update()
 
 void GameScene::draw()
 {
-    int tile_size = WINDOW_SIZE/TILE_COUNT;
-
+    int tile_size = 32;
+    Scene::render();
+    sf::Texture tilemap;
+    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "ERROR LOADING IMAGE" << endl;
+    int tilemap_size = 8;
+    sf::Sprite sprite;
+    sprite.setTexture(tilemap);
+    sf::Vector2i active_pos = m_player.getActivePos();
+    active_pos.x = std::max(active_pos.x, 10);
+    active_pos.x = std::min(active_pos.x, m_map.size()-11);
+    active_pos.y = std::max(active_pos.y, 10);
+    active_pos.y = std::min(active_pos.y, m_map[0].size()-11);
+    for (int x = ; x < scene_map.size(); x++)
+    {
+        for (int y = 0; y < scene_map[x].size(); y++)
+        {
+            sprite.setPosition(tile_size*x, tile_size*y);
+            int num = m_map[active_pos.x][active_pos.y];
+            int tx = (num%tilemap_size)*tile_size;
+            int ty = (num/tilemap_size)*tile_size;
+            sprite.setTextureRect(sf::IntRect(tx,ty,tile_size,tile_size));
+            window->draw(sprite);
+        }
+    }
 }

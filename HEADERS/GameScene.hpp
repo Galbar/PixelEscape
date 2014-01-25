@@ -7,8 +7,8 @@
 #include <string>
 #include <iostream>
 
-#define WINDOW_SIZE 700
-#define TILE_COUNT 20
+#define WINDOW_SIZE 672
+#define TILE_COUNT 21
 
 struct Tile
 {

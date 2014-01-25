@@ -64,8 +64,6 @@ void Input::update()
 
     keyValues[POINTERX] = pos.x;
     keyValues[POINTERY] = pos.y;
-
 }
-
 
 PlayerConfig playerConfigs[4];
