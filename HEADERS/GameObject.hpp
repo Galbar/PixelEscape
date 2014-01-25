@@ -2,13 +2,12 @@
 #define GAMEOBJECT_HPP
 
 #include "Game.hpp"
-//#include "GameScene.h"
+#include "GameScene.hpp"
 
 class GameObject
 {
 public:
-    //GameObject(int x, int y, GameScene* scene);
-    GameObject(int x, int y);
+    GameObject(int x, int y, GameScene* scene);
     ~GameObject();
 
     int getX();

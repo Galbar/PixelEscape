@@ -1,8 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 
-//Player(int x, int y, GameScene* scene) : GameObject(x, y, scene)
-Player::Player(int x, int y) : GameObject(x, y)
+Player(int x, int y, GameScene* scene) : GameObject(x, y, scene)
 {
     m_is_moving = false;
 }
@@ -12,7 +11,7 @@ Player::~Player()
 
 }
 
-void Player::update(sf::RenderWindow* m_window)
+void Player::update()
 {
     sf::Event event;
     while (m_window->pollEvent(event))

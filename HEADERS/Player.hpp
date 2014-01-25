@@ -9,7 +9,7 @@ public:
     Player(int x, int y);
     ~Player();
 
-    virtual void update(sf::RenderWindow* m_window);
+    virtual void update();
     virtual void draw();
 
 private:
