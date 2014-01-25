@@ -43,6 +43,7 @@ struct Tile
         is_begin = false;
         is_end = false;
         index = 0;
+        mask = vector<int> (8, 0);
     }
 
     Tile(sf::Color c)
@@ -52,6 +53,7 @@ struct Tile
         b = false;
         is_begin = false;
         is_end = false;
+        mask = vector<int> (8, 0);
         if (c == sf::Color::Black)
         {
             // nada
@@ -63,6 +65,7 @@ struct Tile
             g = true;
             b = true;
             index = 1;
+            mask[1] = 1, mask[2] = 2, mask[3] = 3, mask[4] = 4;
         }
         else if (c == sf::Color::Red)
         {
