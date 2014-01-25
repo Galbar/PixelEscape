@@ -116,6 +116,8 @@ void Player::update()
     {
 
     }
+
+    std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
 }
 
 void Player::draw(int cam_x, int cam_y)
@@ -151,9 +153,9 @@ sf::Vector2i Player::getActivePos()
 std::vector<bool> Player::getActiveColor()
 {
     std::vector<bool> v(3);
-    v[0] = m_r.is_active;
-    v[1] = m_g.is_active;
-    v[2] = m_b.is_active;
+    v[0] = m_r.is_active and m_r.is_alive;
+    v[1] = m_g.is_active and m_g.is_alive;
+    v[2] = m_b.is_active and m_b.is_alive;
     return v;
 }
 

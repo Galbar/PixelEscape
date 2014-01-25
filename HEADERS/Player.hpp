@@ -26,7 +26,6 @@ struct Component
     void die()
     {
         is_alive = false;
-        is_active = false;
     }
 };
 
