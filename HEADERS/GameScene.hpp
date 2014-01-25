@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 #include "Player.hpp"
 #include "Input.hpp"
+#include "AudioPlayer.hpp"
 #include "HUD.hpp"
 
 #include <vector>
