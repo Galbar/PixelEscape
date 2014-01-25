@@ -125,7 +125,7 @@ void GameScene::draw()
                 num = m_map[0][0].mask[goal_mask];
                 tx = (num%tilemap_size)*tile_size;
                 int ty = (num/tilemap_size)*tile_size;
-                sprite.setTextureRect(sf::IntRect(tx/2,ty,tile_size,tile_size));
+                sprite.setTextureRect(sf::IntRect(tx,ty,tile_size/2,tile_size));
                 m_window->draw(sprite);
             }
         }
