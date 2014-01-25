@@ -81,7 +81,7 @@ void GameScene::draw()
     int tile_size = 32;
     Scene::draw();
     sf::Texture tilemap;
-    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "ERROR LOADING IMAGE" << endl;
+    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
     int tilemap_size = 8;
     sf::Sprite sprite;
     sprite.setTexture(tilemap);
