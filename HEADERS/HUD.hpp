@@ -2,31 +2,24 @@
 #define HUD_HPP
 
 #include <vector>
+#include <string>
+#include <iostream>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
 #include "DisplayObject.hpp"
-#include "Game.hpp"
 
 class HUD
 {
    public:
 
-   	static HUD* sharedHUD();
+   	HUD(sf::RenderWindow* window, int level);
 
 	 	void draw();
 	 	void update();
     void reset();
-
-   protected:
-
-     	HUD();
-
-      HUD(const HUD & ) ;
-      HUD &operator= (const HUD & ) ;
-     
 
    private:
 

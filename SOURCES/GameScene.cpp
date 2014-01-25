@@ -23,6 +23,8 @@ GameScene::GameScene()
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
 
+     m_hud = new HUD(window, lvl);
+
     // Load and Parse the level
     sf::Image map_image;
     if (not map_image.loadFromFile(path))
@@ -50,6 +52,8 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     m_map[0][0] = Tile(sf::Color::White);
 
     m_player = new Player(m_x_begin, m_y_begin, m_window);
+
+
 
 }
 
@@ -84,8 +88,8 @@ void GameScene::update()
         // WIN!
         std::cerr << "HAS GANADO!!!" << std::endl;
     }
-    HUD* hud = HUD::sharedHUD();
-    hud->update();
+   
+    m_hud->update();
 }
 
 void GameScene::draw()
@@ -117,6 +121,5 @@ void GameScene::draw()
     }
     m_player->draw(active_pos.x, active_pos.y);
     
-    HUD* hud = HUD::sharedHUD();
-    hud->draw();
+    m_hud->draw();
 }
