@@ -8,11 +8,14 @@ class Player : public GameObject
 {
 public:
     Player();
-    Player(int x, int y, GameScene* scene);
+    Player(int x, int y);
     ~Player();
 
     virtual void update();
     virtual void draw();
+
+    sf::Vector2i getPos();
+    void setPos(sf::Vector2i n_pos);
 
 private:
     Input m_input;

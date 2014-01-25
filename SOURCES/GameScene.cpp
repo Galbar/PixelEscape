@@ -21,6 +21,11 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
         for (int j = 0; j < height; ++j)
         {
             m_map[i][j] = Tile(map_image.getPixel(i, j));
+            if (m_map[i][j].is_begin)
+            {
+                m_x_begin = i;
+                m_y_begin = j;
+            }
         }
     }
 // Get required color

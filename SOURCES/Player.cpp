@@ -6,7 +6,7 @@ Player::Player()
 
 }
 
-Player::Player(int x, int y, GameScene* scene) : GameObject(x, y, scene)
+Player::Player(int x, int y) : GameObject(x, y)
 {
     m_is_moving = false;
     PlayerConfig cfg;
@@ -41,4 +41,15 @@ void Player::update()
 void Player::draw()
 {
 
+}
+
+sf::Vector2i Player::getPos()
+{
+    return sf::Vector2i(m_x, m_y);
+}
+
+void Player::setPos(sf::Vector2i n_pos)
+{
+    m_x = n_pos.x;
+    m_y = n_pos.y;
 }
