@@ -45,6 +45,8 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     m_required_color = m_map[0][0];
     m_map[0][0] = Tile(sf::Color::White);
     m_player = new Player(m_x_begin, m_y_begin, m_window);
+
+    if (!m_tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
 }
 
 GameScene::~GameScene()
@@ -82,11 +84,9 @@ void GameScene::draw()
 {
     int tile_size = 16;
     Scene::draw();
-    sf::Texture tilemap;
-    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
     int tilemap_size = 8;
     sf::Sprite sprite;
-    sprite.setTexture(tilemap);
+    sprite.setTexture(m_tilemap);
     sf::Vector2i active_pos = m_player->getActivePos();
     active_pos.x = max(active_pos.x, 21);
     active_pos.x = min(active_pos.x, m_map.size()-22);

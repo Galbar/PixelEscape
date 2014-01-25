@@ -129,6 +129,7 @@ private:
     TileMatrix m_map;
     Tile m_required_color;
     Player* m_player;
+    sf::Texture m_tilemap;
     int m_x_begin; // porque se lee mejor
     int m_y_begin;
 };
