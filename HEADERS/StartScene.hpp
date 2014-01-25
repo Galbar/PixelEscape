@@ -1,13 +1,11 @@
 #ifndef	STARTSCENE_HPP
 #define STARTSCENE_HPP
 
-
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include <string>
+#include <iostream>
 
 #include "Scene.hpp"
-#include "DisplayObject.hpp"
+
 
 class StartScene: public Scene
 {
@@ -18,11 +16,12 @@ public:
     StartScene(sf::RenderWindow* window);
     ~StartScene();
 
+    void draw();
+    void update();
+
 private:
-	
-	DisplayObject* m_gameTitle;
-	DisplayObject* m_playButton;
-	
+ 	sf::Font m_font;
+	sf::Text m_gameTitle;
 };
 
 #endif

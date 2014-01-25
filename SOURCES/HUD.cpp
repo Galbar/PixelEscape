@@ -21,17 +21,15 @@ HUD::HUD(sf::RenderWindow* window, int level)
 	m_endColorLabel.setFont(m_font);
 	m_endColorLabel.setString("end color ");
 	m_endColorLabel.setCharacterSize(25);
-	m_endColorLabel.setPosition(200,10);
+	m_endColorLabel.setPosition(370,10);
 	m_endColorLabel.setColor(sf::Color::Black);	
 }
 
 
 void HUD::draw()
 {
-	
 	m_window->draw(m_levelLabel);	
-	m_window->draw(m_endColorLabel);	
-	
+	m_window->draw(m_endColorLabel);		
 }
 
 void HUD::update()
