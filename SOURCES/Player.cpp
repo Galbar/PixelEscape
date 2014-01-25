@@ -114,9 +114,13 @@ void Player::update()
     }
     else if (m_input.getKeyDown(SELECTOTHER))
     {
-
+        if (m_r.is_active and !m_g.is_active and !m_b.is_active
+            and m_g.is_alive and m_b.is_alive
+            and )
+        {
+            /* code */
+        }
     }
-
     std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
 }
 
