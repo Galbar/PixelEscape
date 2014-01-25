@@ -3,7 +3,20 @@
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
     // Load and Parse the level
+    sf::Image map_image;
+    if (not map_image.loadFromFile(path))
+        std::cerr << "[GameScene] Imagen de mapa no encontrada." << std::endl;
 
+    int width = map_image.getSize().x;
+    int height = map_image.getSize().y;
+
+    for (int i = 0; i < width; ++i)
+    {
+        for (int j = 0; j < height; ++j)
+        {
+            m_map[i][j] = Tile(map_image.getPixel(i, j));
+        }
+    }
 }
 
 GameScene::~GameScene()
