@@ -105,5 +105,5 @@ void GameScene::draw()
             m_window->draw(sprite);
         }
     }
-    m_player->draw();
+    m_player->draw(active_pos.x, active_pos.y);
 }
