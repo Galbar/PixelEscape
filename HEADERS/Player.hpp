@@ -10,6 +10,11 @@ struct Component
     int x;
     int y;
 
+    Component()
+    {
+
+    }
+
     Component(int _x, int _y)
     {
         x = _x;
@@ -18,7 +23,7 @@ struct Component
         is_active = true;
     }
 
-    die()
+    void die()
     {
         is_alive = false;
         is_active = false;
@@ -29,7 +34,7 @@ class Player
 {
 public:
     Player();
-    Player(int x, int y);
+    Player(int x, int y, sf::RenderWindow* window);
     ~Player();
 
     virtual void update();
@@ -46,5 +51,6 @@ private:
     Component m_r;
     Component m_g;
     Component m_b;
+    sf::RenderWindow* m_window;
 };
 #endif

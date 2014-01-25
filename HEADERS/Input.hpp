@@ -17,11 +17,20 @@ struct PlayerConfig
 #define MOVERIGHT 1
 #define MOVEDOWN 2
 #define MOVELEFT 3
+#define ALTMOVEUP 4
+#define ALTMOVERIGHT 5
+#define ALTMOVEDOWN 6
+#define ALTMOVELEFT 7
+#define JOINCOMPONENTS 8
+#define SELECTR 9
+#define SELECTG 10
+#define SELECTB 11
+#define SELECTOTHER 12
 
 #define POINTERX 0
 #define POINTERY 1
 
-#define MAPPINGSIZE 4
+#define MAPPINGSIZE 13
 #define VALUESIZE 2
 
 class Input
