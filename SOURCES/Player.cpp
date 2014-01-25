@@ -6,7 +6,7 @@ Player::Player()
 
 }
 
-Player::Player(int x, int y) : GameObject(x, y)
+Player::Player(int x, int y)
 {
     m_is_moving = false;
     PlayerConfig cfg;
@@ -16,6 +16,10 @@ Player::Player(int x, int y) : GameObject(x, y)
     cfg.keyMap[MOVEDOWN] = sf::Keyboard::S;
     cfg.keyMap[MOVERIGHT] = sf::Keyboard::D;
     m_input = Input(cfg.keyMap, scene->m_window);
+
+    m_r = Component(x, y);
+    m_g = Component(x, y);
+    m_b = Component(x, y);
 }
 
 Player::~Player()
@@ -28,13 +32,41 @@ void Player::update()
     m_input.update();
 
     if (m_input.getKeyDown(MOVEUP))
-        m_y--;
+    {
+        if (m_r.is_active and m_r.is_alive)
+            m_r.y--;
+        if (m_g.is_active and m_g.is_alive)
+            m_g.y--;
+        if (m_b.is_active and m_b.is_alive)
+            m_b.y--;
+    }
     else if (m_input.getKeyDown(MOVERIGHT))
-        m_x++;
+    {
+        if (m_r.is_active and m_r.is_alive)
+            m_r.x++;
+        if (m_g.is_active and m_g.is_alive)
+            m_g.x++;
+        if (m_b.is_active and m_b.is_alive)
+            m_b.x++;
+    }
     else if (m_input.getKeyDown(MOVEDOWN))
-        m_y++;
+    {
+        if (m_r.is_active and m_r.is_alive)
+            m_r.y++;
+        if (m_g.is_active and m_g.is_alive)
+            m_g.y++;
+        if (m_b.is_active and m_b.is_alive)
+            m_b.y++;
+    }
     else if (m_input.getKeyDown(MOVELEFT))
-        m_x--;
+    {
+        if (m_r.is_active and m_r.is_alive)
+            m_r.x--;
+        if (m_g.is_active and m_g.is_alive)
+            m_g.x--;
+        if (m_b.is_active and m_b.is_alive)
+            m_b.x--;
+    }
 
 }
 
@@ -43,13 +75,46 @@ void Player::draw()
 
 }
 
-sf::Vector2i Player::getPos()
+sf::Vector2i Player::getPos(int i)
 {
-    return sf::Vector2i(m_x, m_y);
+    if (i == 0)
+        return sf::Vector2i(m_r.x, m_r.y);
+    if (i == 1)
+        return sf::Vector2i(m_g.x, m_g.y);
+    if (i == 2)
+        return sf::Vector2i(m_b.x, m_b.y);
 }
 
-void Player::setPos(sf::Vector2i n_pos)
+char Player::getMask()
 {
-    m_x = n_pos.x;
-    m_y = n_pos.y;
+    return 4*m_r.is_alive + 2*m_g.is_alive + m_b.is_alive;
+}
+
+sf::Vector2i Player::getActivePos()
+{
+    if (m_r.is_active and m_r.is_alive)
+        return sf::Vector2i (m_r.x, m_r.y);
+    if (m_g.is_active and m_g.is_alive)
+        return sf::Vector2i (m_g.x, m_g.y);
+    if (m_b.is_active and m_b.is_alive)
+        return sf::Vector2i (m_b.x, m_b.y);
+}
+
+std::vector<bool> Player::getActiveColor()
+{
+    std::vector<bool> v(3);
+    v[0] = m_r.is_active;
+    v[1] = m_g.is_active;
+    v[2] = m_b.is_active;
+    return v;
+}
+
+void Player::killRGB(int i)
+{
+    if (i == 0)
+        m_r.die();
+    else if (i == 1)
+        m_g.die();
+    else if (i == 2)
+        m_b.die();
 }
