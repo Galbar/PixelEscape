@@ -114,6 +114,8 @@ private:
     TileMatrix m_map;
     Tile m_required_color;
     Player m_player;
+    int m_x_begin; // porque se lee mejor
+    int m_y_begin;
 };
 
 #endif
