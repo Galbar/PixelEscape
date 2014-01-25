@@ -1,7 +1,7 @@
 #include "StartScene.hpp"
 
 StartScene::StartScene(sf::RenderWindow* window) : Scene(window){
-	
+
 	if (!m_font.loadFromFile("data/fonts/PressStart2P.ttf"))
 	{
 		std::cerr << "[StartScene] Fuente no encontrada." << std::endl;
@@ -24,7 +24,5 @@ void StartScene::draw()
 void StartScene::update()
 {
 	Scene::update();
-
-
 }
 

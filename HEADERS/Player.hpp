@@ -2,6 +2,9 @@
 #define PLAYER_HPP
 
 #include "Input.hpp"
+#include "AudioPlayer.hpp"
+
+#include <string>
 
 struct Component
 {
@@ -57,5 +60,7 @@ private:
     float movementCooldownTime;
     float movementCooldown;
     sf::RenderWindow* m_window;
+    int m_move_sound;
+    int m_die_sound;
 };
 #endif
