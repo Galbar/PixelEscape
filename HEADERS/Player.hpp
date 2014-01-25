@@ -39,6 +39,8 @@ public:
     void update();
     void draw(int cam_x, int cam_y);
 
+    void drawPlayer(int x, int y, int col);
+
     char getMask();
     sf::Vector2i getActivePos();
     std::vector<bool> getActiveColor(); // [0]:r [1]:g [2]:b
@@ -50,7 +52,6 @@ private:
     Component m_r;
     Component m_g;
     Component m_b;
-    sf::Texture m_tilemap;
     sf::RenderWindow* m_window;
 };
 #endif
