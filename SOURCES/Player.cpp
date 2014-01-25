@@ -1,6 +1,16 @@
 #include "Player.hpp"
 #include <iostream>
 
+bool samePos(Component a, Component b)
+{
+    return a.x == b.x and a.y == b.y;
+}
+
+bool insideFrustum(Component a, int x, int y)
+{
+    return a.x >= x-21 and a.x <= x+21 and a.y >= y-21 and a.y <= y+21;
+}
+
 Player::Player()
 {
 
@@ -124,9 +134,13 @@ void Player::update()
     std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
 }
 
-void Player::draw()
+void Player::draw(int cam_x, int cam_y)
 {
+    if (samePos(m_r, m_g) and samePos(m_r, m_b) and m_r.is_alive and m_g.is_alive and m_b.is_alive)
+    {
+        if (insideFrustum(m_r, x, y))
 
+    }
 }
 
 sf::Vector2i Player::getPos(int i)
