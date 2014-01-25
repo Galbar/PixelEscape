@@ -1,7 +1,13 @@
+#ifndef GAMEOBJECT_HPP
+#define GAMEOBJECT_HPP
+
+#include "Game.hpp"
+//#include "GameScene.h"
+
 class GameObject
 {
 public:
-    GameObject();
+    //GameObject(int x, int y, GameScene* scene);
     GameObject(int x, int y);
     ~GameObject();
 
@@ -11,7 +17,9 @@ public:
     virtual void update();
     virtual void draw();
 
-private:
+protected:
     int m_x;
     int m_y;
+    //GameScene* m_scene;
 };
+#endif

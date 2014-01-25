@@ -8,7 +8,7 @@ EXECUTABLE = game
 all: $(SOURCES) $(EXECUTABLE)
 
 clean:
-	rm -rf *o $(EXECUTABLE)
+	rm -rf *.o $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS) main.cpp
 	$(CC) main.cpp $(LDFLAGS) $(OBJECTS) -o $@

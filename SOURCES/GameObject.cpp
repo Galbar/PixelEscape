@@ -1,27 +1,34 @@
 #include "GameObject.hpp"
 
-GameObject()
-{
-
-}
-
-GameObject(int x, int y)
+//GameObject(int x, int y, GameScene* scene)
+GameObject::GameObject(int x, int y)
 {
     m_x = x;
     m_y = y;
+    //m_scene = scene;
 }
 
-~GameObject()
+GameObject::~GameObject()
 {
 
 }
 
-int getX()
+void GameObject::update()
+{
+
+}
+
+void GameObject::draw()
+{
+
+}
+
+int GameObject::getX()
 {
     return m_x;
 }
 
-int getY()
+int GameObject::getY()
 {
     return m_y;
 }
