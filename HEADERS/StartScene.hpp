@@ -7,6 +7,7 @@
 #include <time.h> 
 
 #include "Scene.hpp"
+#include "AudioPlayer.hpp"
 
 class StartScene: public Scene
 {

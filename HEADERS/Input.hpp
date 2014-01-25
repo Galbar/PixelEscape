@@ -26,6 +26,8 @@ struct PlayerConfig
 #define SELECTG 10
 #define SELECTB 11
 #define SELECTOTHER 12
+#define PAUSE 13
+#define RESTART 14
 
 #define POINTERX 0
 #define POINTERY 1

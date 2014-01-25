@@ -15,16 +15,12 @@ int min(int a, int b)
 
 GameScene::GameScene()
 {
+
 }
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
-    std::string music_path = "data/audio/music/Final Boss Song.wav";
-    AudioPlayer* au = AudioPlayer::sharedAudioPlayer();
-    int i = au->addMusic(music_path);
-    au->playMusic(i);
-
-     m_hud = new HUD(window, lvl);
+    m_hud = new HUD(window, lvl);
 
     // Load and Parse the level
     sf::Image map_image;
@@ -53,9 +49,6 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     m_map[0][0] = Tile(sf::Color::White);
 
     m_player = new Player(m_x_begin, m_y_begin, m_window);
-
-
-
 }
 
 GameScene::~GameScene()
@@ -86,7 +79,7 @@ void GameScene::update()
     if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end and
         (m_required_color.getMask() == m_player->getMask()))
     {
-        // WIN!
+
         std::cerr << "HAS GANADO!!!" << std::endl;
     }
    
@@ -133,4 +126,14 @@ void GameScene::draw()
     m_player->draw(active_pos.x, active_pos.y);
     
     m_hud->draw();
+}
+
+void GameScene::pause()
+{
+   // m_hud->pause();
+}
+
+void GameScene::resume()
+{
+   // m_hud->resume();
 }

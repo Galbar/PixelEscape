@@ -38,6 +38,12 @@ StartScene::StartScene(sf::RenderWindow* window) : Scene(window){
 
 
 	m_t = std::clock();
+
+}
+
+StartScene::~StartScene()
+{
+	
 }
 
 void StartScene::draw()

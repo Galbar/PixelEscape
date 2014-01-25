@@ -140,6 +140,8 @@ public:
 
     virtual void update();
     virtual void draw();
+    void pause();
+    void resume();
 
 private:
     TileMatrix m_map;

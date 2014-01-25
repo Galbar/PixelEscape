@@ -7,8 +7,8 @@ Game::Game(sf::RenderWindow* window)
     m_window = window;
     m_lvl_paths.push_back("data/levels/level13.png");
 
-    //sc = new GameScene(m_window, 1, m_lvl_paths[0]);
-    sc = new StartScene(m_window);
+    Gsc = new GameScene(m_window, 1, m_lvl_paths[0]);
+    Ssc = new StartScene(m_window);
 
     PlayerConfig cfg;
     cfg.keyMap = vector<sf::Keyboard::Key> (MAPPINGSIZE);
@@ -25,17 +25,32 @@ Game::Game(sf::RenderWindow* window)
     cfg.keyMap[SELECTG] = sf::Keyboard::Num2;
     cfg.keyMap[SELECTB] = sf::Keyboard::Num3;
     cfg.keyMap[SELECTOTHER] = sf::Keyboard::Num4;
+    cfg.keyMap[PAUSE] = sf::Keyboard::P;
+    cfg.keyMap[RESTART] = sf::Keyboard::R;
 
     new Input(cfg.keyMap, m_window);
+
+    m_paused = false;
+    m_is_in_game_scene = false;
+
+    //Musica molona!!
+    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+    m_music_start_scene = a_p->addMusic(std::string("data/audio/music/Cancion Inicio.wav"));
+    m_music_paused = a_p->addMusic(std::string("data/audio/music/Cancion para pausa.wav"));
+    m_music_playing = a_p->addMusic(std::string("data/audio/music/PrimerLevel.wav"));
+    m_music_final_boss = a_p->addMusic(std::string("data/audio/music/Final Boss Song.wav"));
+    a_p->stopMusic();
 }
 
 Game::~Game()
 {
-    delete sc;
+    delete Gsc;
+    delete Ssc;
 }
 
 void Game::execute()
 {
+    sf::Time music_offset;
     while(1)
     {
         // EVENTS
@@ -54,14 +69,42 @@ void Game::execute()
             }
         }
 
-
-        // HERE LOGIC UPDATES
-        sc->update();
-
-         m_window->clear();
-        // HERE DRAWING UPDATES
-        sc->draw();
-
-        m_window->display();
+        if (m_is_in_game_scene)
+        {
+            if (Input::s_input->getKeyPressed(PAUSE))
+            {
+                if (m_paused)
+                {
+                    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+                    a_p->stopMusic();
+                    a_p->playMusic(m_music_playing);
+                    a_p->setMusicOffset(music_offset);
+                    Gsc->resume();
+                }
+                else
+                {
+                    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+                    music_offset = a_p->getMusicOffset();
+                    a_p->stopMusic();
+                    a_p->playMusic(m_music_paused);
+                    Gsc->pause();
+                }
+                m_paused = !m_paused;
+            }
+            if (!m_paused)
+            {
+                Gsc->update();
+            }
+            m_window->clear();
+            Gsc->draw();
+            m_window->display();
+        }
+        else
+        {
+            Ssc->update();
+            m_window->clear();
+            Ssc->draw();
+            m_window->display();
+        }
     }
 }

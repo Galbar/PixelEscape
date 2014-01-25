@@ -81,3 +81,13 @@ int AudioPlayer::addSound(std::string path)
     m_sound_list.push_back(buffer);
     return m_sound_list.size()-1;
 }
+
+void AudioPlayer::setMusicOffset(sf::Time t)
+{
+    m_music.setPlayingOffset(t);
+}
+
+sf::Time AudioPlayer::getMusicOffset()
+{
+    return m_music.getPlayingOffset();
+}

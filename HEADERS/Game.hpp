@@ -9,7 +9,6 @@
 #include <vector>
 #include "AudioPlayer.hpp"
 #include "GameScene.hpp"
-#include "MenuScene.hpp"
 #include "StartScene.hpp"
 
 #define LVL_NUMBER 1
@@ -28,9 +27,17 @@ private:
     std::vector<std::string> m_lvl_paths;
     sf::RenderWindow* m_window;
     bool m_paused;
-    bool m_main_menu;
+    bool m_is_in_game_scene;
+    
 
-    Scene* sc;
+    // Music
+    int m_music_playing;
+    int m_music_paused;
+    int m_music_start_scene;
+    int m_music_final_boss;
+
+    GameScene* Gsc;
+    StartScene* Ssc;
 
     int m_current_lvl;
 };
