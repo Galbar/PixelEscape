@@ -10,7 +10,7 @@ Player::Player(int x, int y, GameScene* scene) : GameObject(x, y, scene)
     cfg.keyMap[MOVELEFT] = sf::Keyboard::A;
     cfg.keyMap[MOVEDOWN] = sf::Keyboard::S;
     cfg.keyMap[MOVERIGHT] = sf::Keyboard::D;
-    m_input = Input(cfg.keyMap, m_window);
+    m_input = Input(cfg.keyMap, scene->m_window);
 }
 
 Player::~Player()

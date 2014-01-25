@@ -1,6 +1,11 @@
 #include "Input.hpp"
 #include <cstdio>
 
+Input::Input()
+{
+
+}
+
 Input::Input(vector<sf::Keyboard::Key> v, sf::RenderWindow* window)
 {
     m_window = window;

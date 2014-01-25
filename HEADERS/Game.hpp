@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "GameScene.hpp"
+#include "MenuScene.hpp"
+
 #define LVL_NUMBER 1
 
 class Game
@@ -20,6 +23,8 @@ private:
     sf::RenderWindow* m_window;
     bool m_paused;
     bool m_main_menu;
+
+    Scene* sc;
 
     int m_current_lvl;
 };

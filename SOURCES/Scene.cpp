@@ -1,5 +1,10 @@
 #include "Scene.hpp"
 
+Scene::Scene()
+{
+
+}
+
 Scene::Scene(sf::RenderWindow* window)
 {
     m_window = window;

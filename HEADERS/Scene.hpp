@@ -8,14 +8,17 @@
 class Scene
 {
 public:
+    Scene();
     Scene(sf::RenderWindow* window);
     ~Scene();
 
     virtual void update();
     virtual void draw();
 
-private:
     sf::RenderWindow* m_window;
+
+private:
+
 };
 
 #endif
