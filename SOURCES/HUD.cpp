@@ -2,7 +2,6 @@
 
 HUD::HUD(sf::RenderWindow* window, int level)
 {
-
 	m_window = window;
 
 	if (!m_font.loadFromFile("data/fonts/PressStart2P.ttf"))
@@ -17,25 +16,27 @@ HUD::HUD(sf::RenderWindow* window, int level)
 	m_levelLabel.setCharacterSize(25);
 	m_levelLabel.setPosition(10,10);
 	m_levelLabel.setColor(sf::Color::Blue);
+
+
+	m_endColorLabel.setFont(m_font);
+	m_endColorLabel.setString("end color ");
+	m_endColorLabel.setCharacterSize(25);
+	m_endColorLabel.setPosition(200,10);
+	m_endColorLabel.setColor(sf::Color::Black);	
 }
 
 
 void HUD::draw()
 {
-	for (int i = 0; i < m_displayObjects.size(); ++i)
-	{
-		m_displayObjects[i]->draw();
-	}
-
+	
 	m_window->draw(m_levelLabel);	
+	m_window->draw(m_endColorLabel);	
+	
 }
 
 void HUD::update()
 {
-	for (int i = 0; i < m_displayObjects.size(); ++i)
-	{
-		m_displayObjects[i]->update();
-	}
+	
 }
 
 void HUD::reset()

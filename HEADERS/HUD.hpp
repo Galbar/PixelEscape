@@ -15,21 +15,19 @@ class HUD
 {
    public:
 
-   	HUD(sf::RenderWindow* window, int level);
+   	HUD (sf::RenderWindow* window, int level);
 
 	 	void draw();
 	 	void update();
-    void reset();
+      void reset();
 
    private:
 
-      static HUD* pHUDInstance;
-
       sf::RenderWindow* m_window;
 
-      std::vector<DisplayObject*>  m_displayObjects;
-      
       sf::Text m_levelLabel;
+      sf::Text m_endColorLabel;
+      
       sf::Font m_font;
 };
 
