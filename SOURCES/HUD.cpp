@@ -13,6 +13,9 @@ HUD* HUD::sharedHUD()
 
 HUD::HUD()
 {
+
+	
+
 	sf::Font font;
 
 	if (!font.loadFromFile("data/levels/PressStart2P.ttf"))
