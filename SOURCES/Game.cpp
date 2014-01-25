@@ -1,6 +1,5 @@
 #include "Game.hpp"
 
-sf::RenderWindow* Game::s_window;
 
 Game::Game(sf::RenderWindow* window)
 {
