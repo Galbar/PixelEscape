@@ -1,7 +1,7 @@
 #ifndef DISPLAYOBJECT_HPP
 #define DISPLAYOBJECT_HPP
 
-#include "Input.h"
+#include "Input.hpp"
 
 class DisplayObject {
 

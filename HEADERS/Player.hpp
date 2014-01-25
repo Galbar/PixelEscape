@@ -48,7 +48,6 @@ public:
     void killRGB(int i); // 0:r 1:g 2:b
 
 private:
-    Input m_input;
     Component m_r;
     Component m_g;
     Component m_b;

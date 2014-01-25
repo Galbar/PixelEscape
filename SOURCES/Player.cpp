@@ -18,24 +18,6 @@ Player::Player()
 
 Player::Player(int x, int y, sf::RenderWindow* window)
 {
-    PlayerConfig cfg;
-    cfg.keyMap = vector<sf::Keyboard::Key> (MAPPINGSIZE);
-    cfg.keyMap[MOVEUP] = sf::Keyboard::W;
-    cfg.keyMap[MOVELEFT] = sf::Keyboard::A;
-    cfg.keyMap[MOVEDOWN] = sf::Keyboard::S;
-    cfg.keyMap[MOVERIGHT] = sf::Keyboard::D;
-    cfg.keyMap[ALTMOVEUP] = sf::Keyboard::Up;
-    cfg.keyMap[ALTMOVELEFT] = sf::Keyboard::Left;
-    cfg.keyMap[ALTMOVEDOWN] = sf::Keyboard::Down;
-    cfg.keyMap[ALTMOVERIGHT] = sf::Keyboard::Right;
-    cfg.keyMap[JOINCOMPONENTS] = sf::Keyboard::J;
-    cfg.keyMap[SELECTR] = sf::Keyboard::Num1;
-    cfg.keyMap[SELECTG] = sf::Keyboard::Num2;
-    cfg.keyMap[SELECTB] = sf::Keyboard::Num3;
-    cfg.keyMap[SELECTOTHER] = sf::Keyboard::Num4;
-
-    m_input = Input(cfg.keyMap, window);
-
     m_window = window;
 
     m_r = Component(x, y);
@@ -51,9 +33,9 @@ Player::~Player()
 
 void Player::update()
 {
-    m_input.update();
+    Input::s_input->update();
 
-    if (m_input.getKeyDown(MOVEUP))
+    if (Input::s_input->getKeyDown(MOVEUP))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.y--;
@@ -62,7 +44,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y--;
     }
-    else if (m_input.getKeyDown(MOVERIGHT))
+    else if (Input::s_input->getKeyDown(MOVERIGHT))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.x++;
@@ -71,7 +53,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.x++;
     }
-    else if (m_input.getKeyDown(MOVEDOWN))
+    else if (Input::s_input->getKeyDown(MOVEDOWN))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.y++;
@@ -80,7 +62,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y++;
     }
-    else if (m_input.getKeyDown(MOVELEFT))
+    else if (Input::s_input->getKeyDown(MOVELEFT))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.x--;
@@ -89,14 +71,14 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.x--;
     }
-    else if (m_input.getKeyDown(JOINCOMPONENTS))
+    else if (Input::s_input->getKeyDown(JOINCOMPONENTS))
     {
         sf::Vector2i p = getActivePos();
         m_r.is_active = (m_r.is_alive and m_r.x == p.x and m_r.y == p.y);
         m_g.is_active = (m_g.is_alive and m_g.x == p.x and m_g.y == p.y);
         m_b.is_active = (m_b.is_alive and m_b.x == p.x and m_b.y == p.y);
     }
-    else if (m_input.getKeyDown(SELECTR))
+    else if (Input::s_input->getKeyDown(SELECTR))
     {
         if (m_r.is_alive)
         {
@@ -105,7 +87,7 @@ void Player::update()
             m_r.is_active = true;
         }
     }
-    else if (m_input.getKeyDown(SELECTG))
+    else if (Input::s_input->getKeyDown(SELECTG))
     {
         if (m_g.is_alive)
         {
@@ -114,7 +96,7 @@ void Player::update()
             m_g.is_active = true;
         }
     }
-    else if (m_input.getKeyDown(SELECTB))
+    else if (Input::s_input->getKeyDown(SELECTB))
     {
         if (m_b.is_alive)
         {
@@ -123,11 +105,30 @@ void Player::update()
             m_b.is_active = true;
         }
     }
-    else if (m_input.getKeyDown(SELECTOTHER))
+    else if (Input::s_input->getKeyDown(SELECTOTHER))
     {
-
+        if (m_r.is_active and !m_g.is_active and !m_b.is_active
+            and m_g.is_alive and m_b.is_alive and samePos(m_g, m_b))
+        {
+            m_r.is_active = false;
+            m_g.is_active = true;
+            m_b.is_active = true;
+        }
+        else if (m_g.is_active and !m_r.is_active and !m_b.is_active
+            and m_r.is_alive and m_b.is_alive and samePos(m_r, m_b))
+        {
+            m_r.is_active = true;
+            m_g.is_active = false;
+            m_b.is_active = true;
+        }
+        else if (m_b.is_active and !m_g.is_active and !m_r.is_active
+            and m_g.is_alive and m_r.is_alive and samePos(m_g, m_r))
+        {
+            m_r.is_active = true;
+            m_g.is_active = true;
+            m_b.is_active = false;
+        }
     }
-
     std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
 }
 

@@ -3,6 +3,7 @@
 
 #include "Scene.hpp"
 #include "Player.hpp"
+#include "Input.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -131,6 +132,7 @@ private:
     Player* m_player;
     int m_x_begin; // porque se lee mejor
     int m_y_begin;
+    Input m_input;
 };
 
 #endif

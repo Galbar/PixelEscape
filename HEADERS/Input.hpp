@@ -43,7 +43,7 @@ private:
     sf::RenderWindow* m_window;
 
 public:
-
+    static Input* s_input;
     vector<bool> keysPressed;
     vector<bool> keysOldPressed;
     vector<float> keyValues;
