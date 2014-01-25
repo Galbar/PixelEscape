@@ -15,7 +15,9 @@ int min(int a, int b)
 
 GameScene::GameScene()
 {
-
+    std::string music_path = "data/audio/music/PrimerLevel.wav";
+    int i = AudioPlayer::sharedAudioPlayer()->addMusic(music_path);
+    AudioPlayer::sharedAudioPlayer()->playMusic(i);
 }
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
@@ -76,7 +78,8 @@ void GameScene::update()
         // GAME OVER!!
     }
         
-    if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end)
+    if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end and
+        (m_required_color.getMask() == m_player->getMask()))
     {
         // WIN!
         std::cerr << "HAS GANADO!!!" << std::endl;

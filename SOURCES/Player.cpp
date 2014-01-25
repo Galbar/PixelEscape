@@ -35,7 +35,7 @@ void Player::update()
 {
     Input::s_input->update();
 
-    if (Input::s_input->getKeyDown(MOVEUP))
+    if (Input::s_input->getKeyDown(MOVEUP) or Input::s_input->getKeyDown(ALTMOVEUP))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.y--;
@@ -44,7 +44,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y--;
     }
-    else if (Input::s_input->getKeyDown(MOVERIGHT))
+    else if (Input::s_input->getKeyDown(MOVERIGHT) or Input::s_input->getKeyDown(ALTMOVERIGHT))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.x++;
@@ -53,7 +53,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.x++;
     }
-    else if (Input::s_input->getKeyDown(MOVEDOWN))
+    else if (Input::s_input->getKeyDown(MOVEDOWN) or Input::s_input->getKeyDown(ALTMOVEDOWN))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.y++;
@@ -62,7 +62,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y++;
     }
-    else if (Input::s_input->getKeyDown(MOVELEFT))
+    else if (Input::s_input->getKeyDown(MOVELEFT) or Input::s_input->getKeyDown(ALTMOVELEFT))
     {
         if (m_r.is_active and m_r.is_alive)
             m_r.x--;
