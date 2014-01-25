@@ -3,7 +3,7 @@
 Game::Game(sf::RenderWindow* window)
 {
     m_window = window;
-    m_lvl_paths.push_back("data/levels/level1.png");
+    m_lvl_paths.push_back("data/levels/test.png");
 
     sc = new GameScene(m_window, 1, m_lvl_paths[0]);
 
