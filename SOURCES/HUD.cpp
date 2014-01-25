@@ -6,28 +6,29 @@ HUD* HUD::sharedHUD()
 {
   if (pHUDInstance == NULL)  
   {
+
     pHUDInstance = new HUD(); 
+
   }
+
   return pHUDInstance; 
 }
 
 HUD::HUD()
 {
 
-	
+	m_window = Game::s_window;
 
-	sf::Font font;
-
-	if (!font.loadFromFile("data/levels/PressStart2P.ttf"))
+	if (!m_font.loadFromFile("data/fonts/PressStart2P.ttf"))
 	{
-
+		std::cerr << "[HUD] Fuente no encontrada." << std::endl;
 	}
 
-	scoreLabel = sf::Text("score", font);
-	scoreLabel.setFont(font);
-	scoreLabel.setCharacterSize(30);
-	scoreLabel.setStyle(sf::Text::Regular);
-	
+	m_levelLabel.setFont(m_font);
+	m_levelLabel.setString("level 1");
+	m_levelLabel.setCharacterSize(25);
+	m_levelLabel.setPosition(10,10);
+	m_levelLabel.setColor(sf::Color::Blue);
 }
 
 
@@ -37,9 +38,9 @@ void HUD::draw()
 	{
 		m_displayObjects[i]->draw();
 	}
+
+	m_window->draw(m_levelLabel);	
 }
-
-
 
 void HUD::update()
 {
