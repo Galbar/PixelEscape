@@ -18,7 +18,6 @@ public:
     void setPos(sf::Vector2i n_pos);
 
 private:
-    bool m_is_moving;
     Input m_input;
 
 };
