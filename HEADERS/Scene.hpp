@@ -1,11 +1,13 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+#include <vector>
+
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "Player.hpp"
+#include "DisplayObject.hpp"
 
 class Scene
 {
@@ -17,10 +19,13 @@ public:
     virtual void update();
     virtual void draw();
 
-    sf::RenderWindow* m_window;
+protected:
+	
+	sf::RenderWindow* m_window;
+ 	std::vector<DisplayObject*>  m_displayObjects;
 
 private:
-
+	
 };
 
 #endif

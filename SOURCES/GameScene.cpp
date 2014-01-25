@@ -20,6 +20,7 @@ GameScene::GameScene()
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
+
     // Load and Parse the level
     sf::Image map_image;
     if (not map_image.loadFromFile(path))
@@ -42,11 +43,12 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
         }
     }
 // Get required color
+
     m_required_color = m_map[0][0];
     m_map[0][0] = Tile(sf::Color::White);
+
     m_player = new Player(m_x_begin, m_y_begin, m_window);
 
-    if (!m_tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
 }
 
 GameScene::~GameScene()
@@ -86,13 +88,14 @@ void GameScene::draw()
     Scene::draw();
     int tilemap_size = 8;
     sf::Sprite sprite;
-    sprite.setTexture(m_tilemap);
+    sf::Texture tilemap;
+    if (!tilemap.loadFromFile("data/textures/tilemap.png")) std::cerr << "[GameScene] Error cargando tilemap" << endl;
+    sprite.setTexture(tilemap);
     sf::Vector2i active_pos = m_player->getActivePos();
     active_pos.x = max(active_pos.x, 21);
     active_pos.x = min(active_pos.x, m_map.size()-22);
     active_pos.y = max(active_pos.y, 21);
     active_pos.y = min(active_pos.y, m_map[0].size()-22);
-    std::cerr << active_pos.x << " " << active_pos.y << std::endl;
     for (int x = active_pos.x-21; x <= active_pos.x+21; x++)
     {
         for (int y = active_pos.y-21; y <= active_pos.y+21; y++)

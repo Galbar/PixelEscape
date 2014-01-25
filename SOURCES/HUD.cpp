@@ -1,24 +1,39 @@
 #include "HUD.hpp"
 
-HUD::HUD(int x, int y, int width, int height)
+HUD* HUD::pHUDInstance = NULL;
+
+HUD* HUD::sharedHUD()
 {
-    m_x = x;
-    m_y = y;
-    m_width = width;
-    m_height = height;
+  if (pHUDInstance == NULL)  
+  {
+    pHUDInstance = new HUD(); 
+  }
+  return pHUDInstance; 
 }
 
-HUD::~HUD()
-{
-
-}
-
-void HUD::update()
+HUD::HUD()
 {
 
 }
+
 
 void HUD::draw()
+{
+	for (int i = 0; i < m_displayObjects.size(); ++i)
+	{
+		m_displayObjects[i].draw();
+	}
+}
+
+void HUD:update()
+{
+	for (int i = 0; i < m_displayObjects.size(); ++i)
+	{
+		m_displayObjects[i].update();
+	}
+}
+
+void HUD::reset()
 {
 
 }
