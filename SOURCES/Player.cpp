@@ -23,15 +23,14 @@ Player::Player(int x, int y, sf::RenderWindow* window)
     cfg.keyMap[SELECTG] = sf::Keyboard::Num2;
     cfg.keyMap[SELECTB] = sf::Keyboard::Num3;
     cfg.keyMap[SELECTOTHER] = sf::Keyboard::Num4;
-    std::cerr << "lolI1" << std::endl;
+
     m_input = Input(cfg.keyMap, window);
-    std::cerr << "lolI2" << std::endl;
+
     m_window = window;
 
     m_r = Component(x, y);
     m_g = Component(x, y);
     m_b = Component(x, y);
-    std::cerr << "lolI3" << std::endl;
 }
 
 Player::~Player()
@@ -41,11 +40,7 @@ Player::~Player()
 
 void Player::update()
 {
-    std::cerr << "lolP1" << std::endl;
-
     m_input.update();
-
-    std::cerr << "lolP2" << std::endl;
 
     if (m_input.getKeyDown(MOVEUP))
     {
@@ -121,7 +116,6 @@ void Player::update()
     {
 
     }
-    std::cerr << "lolP3" << std::endl;
 }
 
 void Player::draw()

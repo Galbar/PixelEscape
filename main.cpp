@@ -4,7 +4,7 @@
 
 #include "HEADERS/Game.hpp"
 
-#define WINDOW_SIZE 672 // CAMBIAR TAMBIEN EN GAMESCENE
+#define WINDOW_SIZE 688 // CAMBIAR TAMBIEN EN GAMESCENE
 
 int main()
 {

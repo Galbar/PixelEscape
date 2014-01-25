@@ -43,8 +43,6 @@ void Game::execute()
         // HERE DRAWING UPDATES
         sc->draw();
 
-
-
         m_window->display();
     }
 }
