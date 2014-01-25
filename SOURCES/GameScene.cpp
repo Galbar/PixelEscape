@@ -99,12 +99,13 @@ void GameScene::draw()
     active_pos.x = min(active_pos.x, m_map.size()-22);
     active_pos.y = max(active_pos.y, 21);
     active_pos.y = min(active_pos.y, m_map[0].size()-22);
+    int active_mask = m_player->getActiveMask();
     for (int x = active_pos.x-21; x <= active_pos.x+21; x++)
     {
         for (int y = active_pos.y-21; y <= active_pos.y+21; y++)
         {
             sprite.setPosition(tile_size*(x+21-active_pos.x), tile_size*(y+21-active_pos.y));
-            int num = m_map[x][y].index;
+            int num = m_map[x][y].mask[active_mask];
             int tx = (num%tilemap_size)*tile_size;
             int ty = (num/tilemap_size)*tile_size;
             sprite.setTextureRect(sf::IntRect(tx,ty,tile_size,tile_size));
