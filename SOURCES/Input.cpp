@@ -66,4 +66,3 @@ void Input::update()
     keyValues[POINTERY] = pos.y;
 }
 
-PlayerConfig playerConfigs[4];

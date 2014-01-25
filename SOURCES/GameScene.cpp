@@ -1,4 +1,5 @@
 #include "GameScene.hpp"
+#include <iostream>
 
 int max(int a, int b)
 {
@@ -19,6 +20,7 @@ GameScene::GameScene()
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
+    std::cerr << "lolG1" << std::endl;
     // Load and Parse the level
     sf::Image map_image;
     if (not map_image.loadFromFile(path))
@@ -43,7 +45,9 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
 // Get required color
     m_required_color = m_map[0][0];
     m_map[0][0] = Tile(sf::Color::White);
-    m_player = Player(m_x_begin, m_y_begin, m_window);
+    std::cerr << "lolG2" << std::endl;
+    m_player = new Player(m_x_begin, m_y_begin, m_window);
+    std::cerr << "lolG3" << std::endl;
 }
 
 GameScene::~GameScene()
@@ -53,31 +57,35 @@ GameScene::~GameScene()
 
 void GameScene::update()
 {
-    m_player.update();
 
-    sf::Vector2i p = m_player.getPos(0);
+    m_player->update();
+
+    std::cerr << "lolGS1" << std::endl;
+    sf::Vector2i p = m_player->getPos(0);
     if (m_map[p.x][p.y].r)
-        m_player.killRGB(0);
-    p = m_player.getPos(1);
+        m_player->killRGB(0);
+    p = m_player->getPos(1);
     if (m_map[p.x][p.y].g)
-        m_player.killRGB(1);
-    p = m_player.getPos(2);
+        m_player->killRGB(1);
+    p = m_player->getPos(2);
     if (m_map[p.x][p.y].b)
-        m_player.killRGB(2);
+        m_player->killRGB(2);
 
-    if (not (m_required_color.getMask() == (m_required_color.getMask() & m_player.getMask())))
+    if (not (m_required_color.getMask() == (m_required_color.getMask() & m_player->getMask())))
     {
         // GAME OVER!!
     }
         
-    if (m_map[m_player.getActivePos().x][m_player.getActivePos().y].is_end)
+    if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end)
     {
         // WIN!
     }
+    std::cerr << "lolGS2" << std::endl;
 }
 
 void GameScene::draw()
 {
+    std::cerr << "lol" << std::endl;
     int tile_size = 32;
     Scene::draw();
     sf::Texture tilemap;
@@ -85,11 +93,12 @@ void GameScene::draw()
     int tilemap_size = 8;
     sf::Sprite sprite;
     sprite.setTexture(tilemap);
-    sf::Vector2i active_pos = m_player.getActivePos();
+    sf::Vector2i active_pos = m_player->getActivePos();
     active_pos.x = max(active_pos.x, 10);
     active_pos.x = min(active_pos.x, m_map.size()-11);
     active_pos.y = max(active_pos.y, 10);
     active_pos.y = min(active_pos.y, m_map[0].size()-11);
+    std::cerr << active_pos.x << " " << active_pos.y << std::endl;
     for (int x = active_pos.x-10; x <= active_pos.x+10; x++)
     {
         for (int y = active_pos.y-10; y <= active_pos.y+10; y++)
