@@ -6,8 +6,8 @@ Game::Game(sf::RenderWindow* window)
     m_window = window;
     m_lvl_paths.push_back("data/levels/level13.png");
 
-    //sc = new GameScene(m_window, 1, m_lvl_paths[0]);
-    sc = new StartScene(m_window);
+    sc = new GameScene(m_window, 1, m_lvl_paths[0]);
+   // sc = new StartScene(m_window);
 
     PlayerConfig cfg;
     cfg.keyMap = vector<sf::Keyboard::Key> (MAPPINGSIZE);

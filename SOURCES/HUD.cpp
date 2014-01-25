@@ -30,18 +30,23 @@ HUD::HUD(sf::RenderWindow* window, int level)
 	m_levelLabel.setColor(sf::Color::Blue);
 
 
-	m_endColorLabel.setFont(m_font);
-	m_endColorLabel.setString("end color ");
-	m_endColorLabel.setCharacterSize(25);
-	m_endColorLabel.setPosition(370,10);
-	m_endColorLabel.setColor(sf::Color::Black);	
+	m_PauseLabel.setFont(m_font);
+	m_PauseLabel.setString("PAUSE");
+	m_PauseLabel.setCharacterSize(200);
+	m_PauseLabel.setPosition(20,200);
+	m_PauseLabel.setColor(sf::Color::Green);	
+
+	isPaused = false;
+
 }
 
 
 void HUD::draw()
 {
 	m_window->draw(m_levelLabel);	
-	m_window->draw(m_endColorLabel);		
+
+	if(isPaused)
+		m_window->draw(m_PauseLabel);		
 }
 
 void HUD::update()
@@ -50,6 +55,16 @@ void HUD::update()
 }
 
 void HUD::reset()
+{
+
+}
+
+void HUD::pause()
+{
+
+}
+
+void HUD::resume()
 {
 
 }
