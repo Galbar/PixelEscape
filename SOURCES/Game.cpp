@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-sf::RenderWindow* Game::s_window = NULL;
+sf::RenderWindow* Game::s_window;
 
 Game::Game(sf::RenderWindow* window)
 {
