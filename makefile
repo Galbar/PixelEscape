@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -I./HEADERS
+CFLAGS = -g -Wall -I./HEADERS
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio  $(CFLAGS)
 SOURCES = $(wildcard SOURCES/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
