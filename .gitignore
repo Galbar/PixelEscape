@@ -1,2 +1,7 @@
 game
+PixelEscape
 *.o
+Makefile
+makefile
+*~
+
