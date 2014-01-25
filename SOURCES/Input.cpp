@@ -1,16 +1,17 @@
-#include "Input.h"
+#include "Input.hpp"
 #include <cstdio>
 
-Input::Input(vector<Keyboard::Key> v)
+Input::Input(vector<sf::Keyboard::Key> v, sf::RenderWindow* window)
 {
+    m_window = window;
     mapSize = MAPPINGSIZE;
     valueMapSize = VALUESIZE;
     keys = vector<sf::Keyboard::Key> (mapSize);
-    keysPressed = vector<bool> (mapSize);
-    keysOldPressed = vector<bool> (mapSize);
+    keysPressed = vector<bool> (mapSize, false);
+    keysOldPressed = vector<bool> (mapSize, false);
     keyValues = vector<float> (valueMapSize, 128);
 
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < int(v.size()); i++)
         keys[i] = v[i];
 }
 
@@ -47,24 +48,17 @@ void Input::update()
 
     for (int i = 0; i < mapSize; i++)
     {
-        if(keys[i] == Keyboard::Tab)
-            keysPressed[i] = Mouse::isButtonPressed(Mouse::Left);
-        else
-            keysPressed[i] = Keyboard::isKeyPressed(keys[i]);
+        keysPressed[i] = sf::Keyboard::isKeyPressed(keys[i]);
     }
 
-    Vector2i mpos = Mouse::getPosition(*app);
+    sf::Vector2i mpos = sf::Mouse::getPosition(*m_window);
 
-    vec2 pos ( float(mpos.x) - float(app->getSize().x) / 2,
-              float(app->getSize().y) / 2 - float(mpos.y));
-    pos /= float(app->getSize().y/2);
+    sf::Vector2f pos ( float(mpos.x) - float(m_window->getSize().x) / 2,
+              float(m_window->getSize().y) / 2 - float(mpos.y));
+    pos /= float(m_window->getSize().y/2);
 
     keyValues[POINTERX] = pos.x;
     keyValues[POINTERY] = pos.y;
-
-    keyValues[DASHX] = 128.0 + (keysPressed[DASH])*1560;
-
-    keyValues[CONNECTED] = true;
 
 }
 
