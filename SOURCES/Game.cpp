@@ -7,8 +7,8 @@ Game::Game(sf::RenderWindow* window)
     m_window = window;
     m_lvl_paths.push_back("data/levels/level13.png");
 
-    sc = new GameScene(m_window, 1, m_lvl_paths[0]);
-
+    //sc = new GameScene(m_window, 1, m_lvl_paths[0]);
+    sc = new StartScene(m_window);
 
     PlayerConfig cfg;
     cfg.keyMap = vector<sf::Keyboard::Key> (MAPPINGSIZE);
@@ -31,7 +31,7 @@ Game::Game(sf::RenderWindow* window)
 
 Game::~Game()
 {
-
+    delete sc;
 }
 
 void Game::execute()
@@ -58,7 +58,7 @@ void Game::execute()
         // HERE LOGIC UPDATES
         sc->update();
 
-        m_window->clear();
+         m_window->clear();
         // HERE DRAWING UPDATES
         sc->draw();
 

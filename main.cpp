@@ -17,4 +17,6 @@ int main()
 
     game.execute();
     AudioPlayer::deleteAudioPlayer();
+
+    delete window;
 }

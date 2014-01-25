@@ -60,7 +60,7 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
 
 GameScene::~GameScene()
 {
-
+    delete m_player;
 }
 
 void GameScene::update()
