@@ -37,8 +37,8 @@ public:
     Player(int x, int y, sf::RenderWindow* window);
     ~Player();
 
-    virtual void update();
-    virtual void draw();
+    void update();
+    void draw(int cam_x, int cam_y);
 
     char getMask();
     sf::Vector2i getActivePos();

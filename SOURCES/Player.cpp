@@ -118,9 +118,9 @@ void Player::update()
     }
 }
 
-void Player::draw()
+void Player::draw(int cam_x, int cam_y)
 {
-
+    if (m_r.x == m_g.x and m_r.x == m_b.x and m_r.y == m_g.y and m_r.y == m_b.y and m_r.is_alive and m_g.is_alive and m_b.is_alive)
 }
 
 sf::Vector2i Player::getPos(int i)
