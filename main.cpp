@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "AudioPlayer.hpp"
 
 #include "Game.hpp"
 
@@ -15,4 +16,5 @@ int main()
     Game game(window);
 
     game.execute();
+    AudioPlayer::deleteAudioPlayer();
 }
