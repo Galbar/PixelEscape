@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-
+#include "AudioPlayer.hpp"
 #include "GameScene.hpp"
 #include "MenuScene.hpp"
 

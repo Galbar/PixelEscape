@@ -2,7 +2,10 @@
 #define HUD_HPP
 
 #include <vector>
+#include <string>
+#include <iostream>
 
+#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -12,26 +15,22 @@ class HUD
 {
    public:
 
-   	static HUD* sharedHUD();
+   	HUD(sf::RenderWindow* window, int level);
 
 	 	void draw();
 	 	void update();
     void reset();
 
-   protected:
-
-     	HUD();
-     
-
    private:
 
       static HUD* pHUDInstance;
+
+      sf::RenderWindow* m_window;
+
       std::vector<DisplayObject*>  m_displayObjects;
-
-      sf::Text scoreLabel;
-
-      sf::RenderWindow *m_window;
-
+      
+      sf::Text m_levelLabel;
+      sf::Font m_font;
 };
 
 #endif
