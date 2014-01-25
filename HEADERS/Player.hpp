@@ -15,7 +15,6 @@ public:
     virtual void draw();
 
 private:
-    bool m_is_moving;
     Input m_input;
 
 };
