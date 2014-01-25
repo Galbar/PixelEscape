@@ -9,7 +9,8 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
 
     int width = map_image.getSize().x;
     int height = map_image.getSize().y;
-
+    m_map = TileMatrix(width,std::vector<Tile>(height));
+// Parse image
     for (int i = 0; i < width; ++i)
     {
         for (int j = 0; j < height; ++j)
@@ -17,6 +18,9 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
             m_map[i][j] = Tile(map_image.getPixel(i, j));
         }
     }
+// Get required color
+    m_required_color = m_map[0][0];
+    m_map[0][0] = Tile(sf::Color::White);
 }
 
 GameScene::~GameScene()

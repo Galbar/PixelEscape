@@ -19,6 +19,25 @@ struct Tile
         return 4*r + 2*g + b;
     }
 
+    sf::Color beginColor()
+    {
+        return sf::Color(100, 100, 100);
+    }
+
+    sf::Color endColor()
+    {
+        return sf::Color(200, 200, 200);
+    }
+
+    Tile()
+    {
+        r = false;
+        g = false;
+        b = false;
+        is_begin = false;
+        is_end = false;
+    }
+
     Tile(sf::Color c)
     {
         r = false;
@@ -63,11 +82,11 @@ struct Tile
             g = true;
             b = true;
         }
-        else if (c == sf::Color(100, 100, 100))
+        else if (c == beginColor())
         {
             is_begin = true;
         }
-        else if (c == sf::Color(200, 200, 200))
+        else if (c == endColor())
         {
             is_end = true;
         }
@@ -87,6 +106,7 @@ public:
 
 private:
     TileMatrix m_map;
+    Tile m_required_color;
 };
 
 #endif
