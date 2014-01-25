@@ -3,14 +3,14 @@
 
 #include "Input.hpp"
 
-struct SubPixel
+struct Component
 {
     bool is_alive;
     bool is_active;
     int x;
     int y;
 
-    SubPixel(int _x, int _y)
+    Component(int _x, int _y)
     {
         x = _x;
         y = _y;
@@ -43,8 +43,8 @@ public:
 
 private:
     Input m_input;
-    SubPixel m_r;
-    SubPixel m_g;
-    SubPixel m_b;
+    Component m_r;
+    Component m_g;
+    Component m_b;
 };
 #endif

@@ -17,9 +17,9 @@ Player::Player(int x, int y)
     cfg.keyMap[MOVERIGHT] = sf::Keyboard::D;
     m_input = Input(cfg.keyMap, scene->m_window);
 
-    m_r = SubPixel(x, y);
-    m_g = SubPixel(x, y);
-    m_b = SubPixel(x, y);
+    m_r = Component(x, y);
+    m_g = Component(x, y);
+    m_b = Component(x, y);
 }
 
 Player::~Player()

@@ -55,6 +55,9 @@ void GameScene::update()
 
     if (not (m_required_color.getMask() == (m_required_color.getMask() & m_player.getMask())))
         // GAME OVER!!
+        
+    if (m_map[m_player.getActivePos().x][m_player.getActivePos().y].is_end)
+        // WIN!
 }
 
 void GameScene::draw()
