@@ -21,6 +21,8 @@ public:
 
     void execute();
 
+    static sf::RenderWindow *s_window;
+
 private:
     std::vector<std::string> m_lvl_paths;
     sf::RenderWindow* m_window;

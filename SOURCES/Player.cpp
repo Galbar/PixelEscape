@@ -45,7 +45,7 @@ void Player::update()
     last_time = cur_time;
     movementCooldown += dt;
 
-    if (Input::s_input->getKeyPressed(MOVEUP) and movementCooldown >= movementCooldownTime)
+    if ((Input::s_input->getKeyPressed(MOVEUP) or Input::s_input->getKeyDown(ALTMOVEUP)) and movementCooldown >= movementCooldownTime)
     {
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
@@ -55,7 +55,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y--;
     }
-    else if (Input::s_input->getKeyPressed(MOVERIGHT) and movementCooldown >= movementCooldownTime)
+    else if ((Input::s_input->getKeyPressed(MOVERIGHT) or Input::s_input->getKeyDown(ALTMOVERIGHT)) and movementCooldown >= movementCooldownTime)
     {
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
@@ -65,7 +65,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.x++;
     }
-    else if (Input::s_input->getKeyPressed(MOVEDOWN) and movementCooldown >= movementCooldownTime)
+    else if ((Input::s_input->getKeyPressed(MOVEDOWN) or Input::s_input->getKeyDown(ALTMOVEDOWN)) and movementCooldown >= movementCooldownTime)
     {
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
@@ -75,7 +75,7 @@ void Player::update()
         if (m_b.is_active and m_b.is_alive)
             m_b.y++;
     }
-    else if (Input::s_input->getKeyPressed(MOVELEFT) and movementCooldown >= movementCooldownTime)
+    else if ((Input::s_input->getKeyPressed(MOVELEFT) or Input::s_input->getKeyDown(ALTMOVELEFT)) and movementCooldown >= movementCooldownTime)
     {
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
