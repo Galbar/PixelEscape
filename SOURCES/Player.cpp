@@ -205,6 +205,11 @@ char Player::getMask()
     return 4*m_r.is_alive + 2*m_g.is_alive + m_b.is_alive;
 }
 
+char Player::getActiveMask()
+{
+    return 4*m_r.is_alive*m_r.is_active + 2*m_g.is_alive*m_g.is_active + m_b.is_alive*m_b.is_active;
+}
+
 sf::Vector2i Player::getActivePos()
 {
     if (m_r.is_active and m_r.is_alive)

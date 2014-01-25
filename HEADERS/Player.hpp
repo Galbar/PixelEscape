@@ -42,6 +42,7 @@ public:
     void drawPlayer(int x, int y, int col);
 
     char getMask();
+    char getActiveMask();
     sf::Vector2i getActivePos();
     std::vector<bool> getActiveColor(); // [0]:r [1]:g [2]:b
     sf::Vector2i getPos(int i); // 0:r 1:g 2:b
