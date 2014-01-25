@@ -2,6 +2,7 @@
 #define GAMESCENE_HPP
 
 #include "Scene.hpp"
+#include "Player.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -98,6 +99,7 @@ typedef std::vector<std::vector<Tile> > TileMatrix;
 class GameScene : public Scene
 {
 public:
+    GameScene();
     GameScene(sf::RenderWindow* window, const int lvl, const std::string& path);
     ~GameScene();
 
@@ -107,6 +109,7 @@ public:
 private:
     TileMatrix m_map;
     Tile m_required_color;
+    Player m_player;
 };
 
 #endif

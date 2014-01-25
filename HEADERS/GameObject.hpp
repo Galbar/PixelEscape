@@ -1,13 +1,10 @@
 #ifndef GAMEOBJECT_HPP
 #define GAMEOBJECT_HPP
 
-#include "Game.hpp"
-#include "GameScene.hpp"
-
 class GameObject
 {
 public:
-    GameObject(int x, int y, GameScene* scene);
+    GameObject(int x, int y);
     ~GameObject();
 
     int getX();
@@ -19,6 +16,6 @@ public:
 protected:
     int m_x;
     int m_y;
-    GameScene* m_scene;
 };
+
 #endif

@@ -7,6 +7,7 @@
 class Player : public GameObject
 {
 public:
+    Player();
     Player(int x, int y, GameScene* scene);
     ~Player();
 
@@ -16,5 +17,6 @@ public:
 private:
     bool m_is_moving;
     Input m_input;
+
 };
 #endif

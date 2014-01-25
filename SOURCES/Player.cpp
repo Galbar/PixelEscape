@@ -1,6 +1,11 @@
 #include "Player.hpp"
 #include <iostream>
 
+Player::Player()
+{
+
+}
+
 Player::Player(int x, int y, GameScene* scene) : GameObject(x, y, scene)
 {
     m_is_moving = false;
