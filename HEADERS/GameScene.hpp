@@ -91,6 +91,10 @@ struct Tile
         {
             is_end = true;
         }
+        else
+        {
+            std::cerr << "[Tile] Color desconocido para mi :/" << std::endl;
+        }
     }
 };
 
