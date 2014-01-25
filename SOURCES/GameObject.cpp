@@ -1,6 +1,6 @@
 #include "GameObject.hpp"
 
-GameObject(int x, int y, GameScene* scene)
+GameObject::GameObject(int x, int y, GameScene* scene)
 {
     m_x = x;
     m_y = y;

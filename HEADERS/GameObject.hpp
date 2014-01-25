@@ -19,6 +19,6 @@ public:
 protected:
     int m_x;
     int m_y;
-    //GameScene* m_scene;
+    GameScene* m_scene;
 };
 #endif
