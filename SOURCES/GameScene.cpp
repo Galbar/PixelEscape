@@ -15,13 +15,14 @@ int min(int a, int b)
 
 GameScene::GameScene()
 {
-    std::string music_path = "data/audio/music/PrimerLevel.wav";
-    int i = AudioPlayer::sharedAudioPlayer()->addMusic(music_path);
-    AudioPlayer::sharedAudioPlayer()->playMusic(i);
 }
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
+    std::string music_path = "data/audio/music/PrimerLevel.wav";
+    AudioPlayer* au = AudioPlayer::sharedAudioPlayer();
+    int i = au->addMusic(music_path);
+    au->playMusic(i);
 
     // Load and Parse the level
     sf::Image map_image;
