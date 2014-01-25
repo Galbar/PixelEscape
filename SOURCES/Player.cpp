@@ -13,13 +13,13 @@ bool insideFrustum(Component a, int x, int y)
 
 Player::Player()
 {
-    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
-    m_move_sound = a_p->addSound(std::string("data/audio/sound/Sonido Movimiento.wav"));
-    m_die_sound = a_p->addSound(std::string("data/audio/sound/Pierde Vida.wav"));
 }
 
 Player::Player(int x, int y, sf::RenderWindow* window)
 {
+    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+    m_move_sound = a_p->addSound(std::string("data/audio/sound/Sonido Movimiento.wav"));
+    m_die_sound = a_p->addSound(std::string("data/audio/sound/Pierde Vida.wav"));
     m_window = window;
 
     timer.restart();
@@ -49,8 +49,7 @@ void Player::update()
 
     if ((Input::s_input->getKeyPressed(MOVEUP) or Input::s_input->getKeyDown(ALTMOVEUP)) and movementCooldown >= movementCooldownTime)
     {
-        //AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound);
-        std::cerr << "hola" << std::endl;
+        AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound, 65);
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
             m_r.y--;
@@ -61,7 +60,7 @@ void Player::update()
     }
     else if ((Input::s_input->getKeyPressed(MOVERIGHT) or Input::s_input->getKeyDown(ALTMOVERIGHT)) and movementCooldown >= movementCooldownTime)
     {
-        //AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound);
+        AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound, 65);
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
             m_r.x++;
@@ -72,7 +71,7 @@ void Player::update()
     }
     else if ((Input::s_input->getKeyPressed(MOVEDOWN) or Input::s_input->getKeyDown(ALTMOVEDOWN)) and movementCooldown >= movementCooldownTime)
     {
-        //AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound);
+        AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound, 65);
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
             m_r.y++;
@@ -83,7 +82,7 @@ void Player::update()
     }
     else if ((Input::s_input->getKeyPressed(MOVELEFT) or Input::s_input->getKeyDown(ALTMOVELEFT)) and movementCooldown >= movementCooldownTime)
     {
-        //AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound);
+        AudioPlayer::sharedAudioPlayer()->playSound(m_move_sound, 65);
         movementCooldown = 0;
         if (m_r.is_active and m_r.is_alive)
             m_r.x--;
@@ -251,6 +250,10 @@ std::vector<bool> Player::getActiveColor()
 
 void Player::killRGB(int i)
 {
+    if ((i == 0 and m_r.is_alive and m_r.is_active) or (i == 1 and m_g.is_alive and m_g.is_active) or (i == 2 and m_b.is_alive and m_b.is_active))
+    {
+        AudioPlayer::sharedAudioPlayer()->playSound(m_die_sound);
+    }
     if (i == 0)
         m_r.die();
     else if (i == 1)

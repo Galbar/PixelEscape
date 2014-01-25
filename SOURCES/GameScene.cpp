@@ -19,7 +19,7 @@ GameScene::GameScene()
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
-    std::string music_path = "data/audio/music/PrimerLevel.wav";
+    std::string music_path = "data/audio/music/Final Boss Song.wav";
     AudioPlayer* au = AudioPlayer::sharedAudioPlayer();
     int i = au->addMusic(music_path);
     au->playMusic(i);

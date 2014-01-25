@@ -27,12 +27,29 @@ void AudioPlayer::playMusic(int i)
 {
     if (!m_music->openFromFile(m_music_list[i]))
         std::cerr << "[AudioPlayer] Error al cargar musica: " << m_music_list[i] << std::endl;
+    m_music->setVolume(100);
+    m_music->play();
+}
+
+void AudioPlayer::playMusic(int i, float j)
+{
+    if (!m_music->openFromFile(m_music_list[i]))
+        std::cerr << "[AudioPlayer] Error al cargar musica: " << m_music_list[i] << std::endl;
+    m_music->setVolume(j);
     m_music->play();
 }
 
 void AudioPlayer::playSound(int i)
 {
     m_sound->setBuffer(m_sound_list[i]);
+    m_sound->setVolume(100);
+    m_sound->play();
+}
+
+void AudioPlayer::playSound(int i, float j)
+{
+    m_sound->setBuffer(m_sound_list[i]);
+    m_sound->setVolume(j);
     m_sound->play();
 }
 
@@ -43,7 +60,7 @@ void AudioPlayer::stopMusic()
 
 void AudioPlayer::stopSound()
 {
-    m_sound->stop();
+    m_sound->resetBuffer();
 }
 
 int AudioPlayer::addMusic(std::string path)

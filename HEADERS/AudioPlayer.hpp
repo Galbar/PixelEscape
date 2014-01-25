@@ -1,10 +1,10 @@
 #ifndef AUDIOPLAYER_HPP
 #define AUDIOPLAYER_HPP
 
+#include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -18,7 +18,9 @@ public:
 static AudioPlayer* sharedAudioPlayer();
 
   void playMusic(int i);
+  void playMusic(int i, float j);
   void playSound(int i);
+  void playSound(int i, float j);
   void stopMusic();
   void stopSound();
   int addMusic(std::string path);
@@ -26,8 +28,8 @@ static AudioPlayer* sharedAudioPlayer();
 
 private:
   static AudioPlayer* s_audio_player;
-  std::vector<std::string>  m_music_list;
   std::vector<sf::SoundBuffer>  m_sound_list;
+  std::vector<std::string>  m_music_list;
   sf::Sound* m_sound;
   sf::Music* m_music;
 
