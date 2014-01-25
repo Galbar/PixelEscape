@@ -10,7 +10,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-
 class HUD
 {
    public:
@@ -21,14 +20,19 @@ class HUD
 	 	void update();
       void reset();
 
+      void pause();
+      void resume();
+
    private:
 
       sf::RenderWindow* m_window;
 
       sf::Text m_levelLabel;
-      sf::Text m_endColorLabel;
+      sf::Text m_PauseLabel;
       
       sf::Font m_font;
+
+      bool isPaused;
 };
 
 #endif
