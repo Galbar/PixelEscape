@@ -125,10 +125,25 @@ void Player::update()
     else if (m_input.getKeyDown(SELECTOTHER))
     {
         if (m_r.is_active and !m_g.is_active and !m_b.is_active
-            and m_g.is_alive and m_b.is_alive
-            and )
+            and m_g.is_alive and m_b.is_alive and samePos(m_g, m_b))
         {
-            /* code */
+            m_r.is_active = false;
+            m_g.is_active = true;
+            m_b.is_active = true;
+        }
+        else if (m_r.is_active and !m_g.is_active and !m_b.is_active
+            and m_g.is_alive and m_b.is_alive and samePos(m_g, m_b))
+        {
+            m_r.is_active = false;
+            m_g.is_active = true;
+            m_b.is_active = true;
+        }
+        else if (m_r.is_active and !m_g.is_active and !m_b.is_active
+            and m_g.is_alive and m_b.is_alive and samePos(m_g, m_b))
+        {
+            m_r.is_active = false;
+            m_g.is_active = true;
+            m_b.is_active = true;
         }
     }
     std::cerr << "player ( " << getActivePos().x << " , " << getActivePos().y << " )" << std::endl;
@@ -138,7 +153,7 @@ void Player::draw(int cam_x, int cam_y)
 {
     if (samePos(m_r, m_g) and samePos(m_r, m_b) and m_r.is_alive and m_g.is_alive and m_b.is_alive)
     {
-        if (insideFrustum(m_r, x, y))
+        //if (insideFrustum(m_r, x, y))
 
     }
 }
