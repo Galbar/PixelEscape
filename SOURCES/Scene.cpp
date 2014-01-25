@@ -19,7 +19,7 @@ void Scene::draw()
 {
 	for (int i = 0; i < m_displayObjects.size(); ++i)
 	{
-		m_displayObjects[i].draw();
+		m_displayObjects[i]->draw();
 	}
 }
 
@@ -27,7 +27,7 @@ void Scene::update()
 {
 	for (int i = 0; i < m_displayObjects.size(); ++i)
 	{
-		m_displayObjects[i].update();
+		m_displayObjects[i]->update();
 	}
 }
 

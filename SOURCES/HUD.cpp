@@ -21,15 +21,15 @@ void HUD::draw()
 {
 	for (int i = 0; i < m_displayObjects.size(); ++i)
 	{
-		m_displayObjects[i].draw();
+		m_displayObjects[i]->draw();
 	}
 }
 
-void HUD:update()
+void HUD::update()
 {
 	for (int i = 0; i < m_displayObjects.size(); ++i)
 	{
-		m_displayObjects[i].update();
+		m_displayObjects[i]->update();
 	}
 }
 

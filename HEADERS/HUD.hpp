@@ -12,7 +12,7 @@ class HUD
 
 	 	void draw();
 	 	void update();
-      void reset();
+    void reset();
 
    protected:
 
