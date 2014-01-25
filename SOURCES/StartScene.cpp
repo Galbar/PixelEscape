@@ -2,17 +2,6 @@
 
 StartScene::StartScene(sf::RenderWindow* window) : Scene(window){
 
-	if (!m_font.loadFromFile("data/fonts/PressStart2P.ttf"))
-	{
-		std::cerr << "[StartScene] Fuente no encontrada." << std::endl;
-	}
-
-	m_gameTitle.setFont(m_font);
-	m_gameTitle.setString("play");
-	m_gameTitle.setCharacterSize(90);
-	m_gameTitle.setPosition(250,470);
-	m_gameTitle.setColor(sf::Color::Black);
-
 	sf::RectangleShape rectangle;
 
 	for (int i = 0; i < 16; ++i)
@@ -33,6 +22,22 @@ StartScene::StartScene(sf::RenderWindow* window) : Scene(window){
 		m_rectangles.push_back(rectangle);
 	}
 	
+	m_title_py = -200;
+
+	m_title_texture.loadFromFile("data/textures/title.png");
+	m_title_sprite.setTexture(m_title_texture);
+	m_title_sprite.setPosition(50, m_title_py);	
+
+
+	m_playButtonTexture.loadFromFile("data/textures/play.png");
+	m_playButtonSprite.setTexture(m_playButtonTexture);
+	m_playButtonSprite.setPosition(370, 570);	
+
+	m_playButtonRect = m_playButtonSprite.getGlobalBounds ();
+	
+
+
+	m_t = std::clock();
 }
 
 void StartScene::draw()
@@ -41,17 +46,34 @@ void StartScene::draw()
 	{
 		m_window->draw(m_rectangles[i]);
 	}
-	
-	m_window ->draw(m_gameTitle);
-	
 
+	if(m_title_py< 105)
+		m_title_py+=1.5;
+
+	m_title_sprite.setPosition(50, (int) m_title_py);
+	
+	m_window->draw(m_title_sprite);
+
+	std::clock_t t=  std::clock();
+	t = t - m_t;
+	
+	if((float)t>150000){
+		m_window->draw(m_playButtonSprite);
+	}
+		
 	Scene::draw();
-
-	
 }
 
 void StartScene::update()
 {
-	
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*m_window);
+
+		if(m_playButtonRect.contains(mousePos.x, mousePos.y)){
+			//startGame();
+			std::cerr << "[StartScene] Start Game" << std::endl;
+		}
+	}
 }
 

@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <time.h> 
 
 #include "Scene.hpp"
-
 
 class StartScene: public Scene
 {
@@ -22,16 +22,21 @@ public:
 
 private:
 
- 	sf::Font m_font;
-
-	sf::Text m_gameTitle;
-
-	//sf::Text m_gameTitle_2;	
-
+ 
 	std::vector<sf::RectangleShape> m_rectangles;
 
-	//sf::Sprite m_title_sprite;
-	//sf::Texture m_title_texture;
+	sf::Sprite m_title_sprite;
+	sf::Texture m_title_texture;
+
+	sf::Sprite m_playButtonSprite;
+	sf::Texture m_playButtonTexture;
+
+	std::clock_t m_t;
+
+	float m_title_py;
+
+	sf::FloatRect m_playButtonRect;
+
 };
 
 #endif
