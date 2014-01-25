@@ -1,6 +1,8 @@
 #include "Input.hpp"
 #include <cstdio>
 
+Input* Input::s_input = NULL;
+
 Input::Input()
 {
 
@@ -18,6 +20,8 @@ Input::Input(vector<sf::Keyboard::Key> v, sf::RenderWindow* window)
 
     for (int i = 0; i < int(v.size()); i++)
         keys[i] = v[i];
+
+    s_input = this;
 }
 
 bool Input::getKeyPressed(int n)
@@ -65,4 +69,3 @@ void Input::update()
     keyValues[POINTERX] = pos.x;
     keyValues[POINTERY] = pos.y;
 }
-
