@@ -4,6 +4,9 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <iostream>
+
+#define LVL_NUMBER 1
 
 class Game
 {
@@ -14,8 +17,12 @@ public:
     void execute();
 
 private:
+    std::string m_lvl_paths[];
     sf::RenderWindow* m_window;
     bool m_paused;
+    bool m_main_menu;
+
+    int m_current_lvl;
 };
 
 
