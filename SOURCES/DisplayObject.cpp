@@ -1,4 +1,4 @@
-#include "DisplayObject.h"
+#include "DisplayObject.hpp"
 
 DisplayObject::DisplayObject(int x, int y, int width, int height){
 
