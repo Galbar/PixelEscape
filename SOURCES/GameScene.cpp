@@ -40,11 +40,13 @@ GameScene::~GameScene()
 
 void GameScene::update()
 {
+    sf::Vector2i pos = m_player.getPos();
     m_player.update();
 
 }
 
 void GameScene::draw()
 {
+    int tile_size = WINDOW_SIZE/TILE_COUNT;
 
 }

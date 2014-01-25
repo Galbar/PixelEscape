@@ -7,6 +7,9 @@
 #include <string>
 #include <iostream>
 
+#define WINDOW_SIZE 700
+#define TILE_COUNT 20
+
 struct Tile
 {
     bool r;
@@ -14,6 +17,7 @@ struct Tile
     bool b;
     bool is_begin;
     bool is_end;
+    int index;
 
     char getMask()
     {
@@ -37,6 +41,7 @@ struct Tile
         b = false;
         is_begin = false;
         is_end = false;
+        index = 0;
     }
 
     Tile(sf::Color c)
@@ -49,47 +54,57 @@ struct Tile
         if (c == sf::Color::Black)
         {
             // nada
+            index = 0;
         }
         else if (c == sf::Color::White)
         {
             r = true;
             g = true;
             b = true;
+            index = 1;
         }
         else if (c == sf::Color::Red)
         {
             r = true;
+            index = 2;
         }
         else if (c == sf::Color::Green)
         {
             g = true;
+            index = 3;
         }
         else if (c == sf::Color::Blue)
         {
             b = true;
+            index = 4;
         }
         else if (c == sf::Color::Yellow)
         {
             r = true;
             g = true;
+            index = 5;
         }
         else if (c == sf::Color::Magenta)
         {
             r = true;
             b = true;
+            index = 6;
         }
         else if (c == sf::Color::Cyan)
         {
             g = true;
             b = true;
+            index = 7;
         }
         else if (c == beginColor())
         {
             is_begin = true;
+            index = 8;
         }
         else if (c == endColor())
         {
             is_end = true;
+            index = 9;
         }
         else
         {
