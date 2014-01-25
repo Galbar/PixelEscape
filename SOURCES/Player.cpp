@@ -6,9 +6,8 @@ Player::Player()
 
 }
 
-Player::Player(int x, int y)
+Player::Player(int x, int y, sf::RenderWindow* window)
 {
-    m_is_moving = false;
     PlayerConfig cfg;
     cfg.keyMap = vector<sf::Keyboard::Key> (MAPPINGSIZE);
     cfg.keyMap[MOVEUP] = sf::Keyboard::W;
@@ -24,7 +23,8 @@ Player::Player(int x, int y)
     cfg.keyMap[SELECTG] = sf::Keyboard::Num2;
     cfg.keyMap[SELECTB] = sf::Keyboard::Num3;
     cfg.keyMap[SELECTOTHER] = sf::Keyboard::Num4;
-    m_input = Input(cfg.keyMap, scene->m_window);
+    m_input = Input(cfg.keyMap, window);
+    m_window = window;
 
     m_r = Component(x, y);
     m_g = Component(x, y);
@@ -112,7 +112,7 @@ void Player::update()
     }
     else if (m_input.getKeyDown(SELECTOTHER))
     {
-        
+
     }
 }
 
