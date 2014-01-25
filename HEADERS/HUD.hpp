@@ -1,20 +1,29 @@
 #ifndef HUD_HPP
 #define HUD_HPP
 
+#include <vector>
+#include "DisplayObject.hpp"
+
 class HUD
 {
-public:
-    HUD(int x, int y, int width, int height);
-    ~HUD();
+   public:
 
-    virtual void update();
-    virtual void draw();
+   	static HUD* sharedHUD();
 
-protected:
-    int m_x;
-    int m_y;
-    int m_width;
-    int m_height;
+	 	void draw();
+	 	void update();
+      void reset();
+
+   protected:
+
+     	HUD();
+     
+
+   private:
+
+      static HUD* pHUDInstance;
+      std::vector<DisplayObject*>  m_displayObjects;
+
 };
 
 #endif
