@@ -1,16 +1,14 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "util.h"
+#include "Pointer.h"
+#include <vector>
+#include <SFML/System.hpp>
 
 struct PlayerConfig
 {
     vector<sf::Keyboard::Key> keyMap;
 };
-
-#include "Pointer.h"
-#include <vector>
-#include <SFML/System.hpp>
 
 #define JUMP 0
 #define MOVERIGHT 1
