@@ -4,7 +4,7 @@
 #include "Input.hpp"
 
 class DisplayObject {
-
+public:
 	DisplayObject(int x, int y, int width, int height);
     ~DisplayObject();
 
