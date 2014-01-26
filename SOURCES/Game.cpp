@@ -48,8 +48,8 @@ Game::Game(sf::RenderWindow* window)
     AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
     m_music_start_scene = a_p->addMusic(std::string("data/audio/music/Cancion Inicio.wav"));
     m_music_paused = a_p->addMusic(std::string("data/audio/music/Cancion para pausa.wav"));
-    m_music_playing = a_p->addMusic(std::string("data/audio/music/PrimerLevel.wav"));
     m_music_final_boss = a_p->addMusic(std::string("data/audio/music/Final Boss Song.wav"));
+    m_music_playing = a_p->addMusic(std::string("data/audio/music/PrimerLevel.wav"));
     m_sound_next_lvl = a_p->addSound(std::string("data/audio/sound/NextLevel.wav"));
     a_p->stopMusic();
 }
@@ -189,6 +189,11 @@ void Game::nextLevel()
         Ssc = new StartScene(m_window);
         AudioPlayer::sharedAudioPlayer()->playMusic(m_music_start_scene);
     }
+    /*else if (m_current_lvl == m_lvl_paths.size()-1)
+    {  
+        AudioPlayer::sharedAudioPlayer()->stopMusic();
+        AudioPlayer::sharedAudioPlayer()->playMusic(m_music_final_boss);
+    }*/
     else
     {
         if (Gsc != NULL)

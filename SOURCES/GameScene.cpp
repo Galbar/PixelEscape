@@ -37,7 +37,7 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     lvl_info.open(path.c_str());
     if (!lvl_info.good())
     {
-        std::cerr << "[Game] Error al abrir info de nivel." << std::endl;
+        std::cerr << "[GameScene] Error al abrir info de nivel." << std::endl;
     }
     string s;
 
