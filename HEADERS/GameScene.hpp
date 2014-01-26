@@ -151,6 +151,7 @@ private:
     int m_active_map;
     bool m_is_dynamic;
     int m_current_map_frame;
+    int offset;
     sf::Clock m_timer;
     float m_dyn_shift; // cada cuantos segundos cambia el nivel
     Tile m_required_color;
