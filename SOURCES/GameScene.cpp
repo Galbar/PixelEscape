@@ -97,6 +97,8 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     m_game_over = false;
     m_win = false;
     m_player = new Player(m_x_begin, m_y_begin, m_window);
+
+    offset = 0;
 }
 
 GameScene::~GameScene()
@@ -133,11 +135,18 @@ void GameScene::update()
    
     m_hud->update();
 
+    if (m_is_dynamic and m_timer.getElapsedTime().asSeconds() > m_dyn_shift-(m_dyn_shift/4))
+    {
+        offset++;
+        offset%=4;
+    }
+
     if (m_is_dynamic and m_timer.getElapsedTime().asSeconds() > m_dyn_shift)
     {
         m_timer.restart();
         m_current_map_frame++;
         m_active_map = m_current_map_frame % m_map.size();
+        offset = 0;
     }
 }
 
@@ -152,25 +161,25 @@ void GameScene::draw()
     sprite.setTexture(tilemap);
     sf::Vector2i active_pos = m_player->getActivePos();
     active_pos.x = max(active_pos.x, 21);
-    active_pos.x = min(active_pos.x, m_map[m_active_map].size()-22);
+    active_pos.x = min(active_pos.x, m_map[(m_active_map+(offset/2))%m_map.size()].size()-22);
     active_pos.y = max(active_pos.y, 21);
-    active_pos.y = min(active_pos.y, m_map[m_active_map][0].size()-22);
+    active_pos.y = min(active_pos.y, m_map[(m_active_map+(offset/2))%m_map.size()][0].size()-22);
     int active_mask = m_player->getActiveMask();
     for (int x = active_pos.x-21; x <= active_pos.x+21; x++)
     {
         for (int y = active_pos.y-21; y <= active_pos.y+21; y++)
         {
             sprite.setPosition(tile_size*(x+21-active_pos.x), tile_size*(y+21-active_pos.y));
-            int num = m_map[m_active_map][x][y].mask[active_mask];
+            int num = m_map[(m_active_map+(offset/2))%m_map.size()][x][y].mask[active_mask];
             int tx = (num%tilemap_size)*tile_size;
             int ty = (num/tilemap_size)*tile_size;
             sprite.setTextureRect(sf::IntRect(tx,ty,tile_size,tile_size));
             m_window->draw(sprite);
-            if (m_map[m_active_map][x][y].is_end)
+            if (m_map[(m_active_map+(offset/2))%m_map.size()][x][y].is_end)
             {
                 Tile c = m_required_color;
                 int goal_mask = 4*c.r+2*c.g+c.b;
-                num = m_map[m_active_map][0][0].mask[goal_mask];
+                num = m_map[(m_active_map+(offset/2))%m_map.size()][0][0].mask[goal_mask];
                 tx = (num%tilemap_size)*tile_size;
                 int ty = (num/tilemap_size)*tile_size;
                 sprite.setTextureRect(sf::IntRect(tx,ty,tile_size/2,tile_size));
