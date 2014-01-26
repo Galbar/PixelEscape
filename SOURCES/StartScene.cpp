@@ -1,7 +1,8 @@
 #include "StartScene.hpp"
 
 StartScene::StartScene(sf::RenderWindow* window) : Scene(window){
-
+	m_start = false;
+	m_start_sound = AudioPlayer::sharedAudioPlayer()->addSound(std::string("data/audio/sound/Pierde Vida.wav"));
 	sf::RectangleShape rectangle;
 
 	for (int i = 0; i < 16; ++i)
@@ -63,7 +64,7 @@ void StartScene::draw()
 	std::clock_t t=  std::clock();
 	t = t - m_t;
 	
-	if((float)t>150000){
+	if((float)t>600000){
 		m_window->draw(m_playButtonSprite);
 	}
 		
@@ -77,9 +78,26 @@ void StartScene::update()
 		sf::Vector2i mousePos = sf::Mouse::getPosition(*m_window);
 
 		if(m_playButtonRect.contains(mousePos.x, mousePos.y)){
-			//startGame();
-			std::cerr << "[StartScene] Start Game" << std::endl;
+			m_start = true;
+			AudioPlayer::sharedAudioPlayer()->stopMusic();
+			std::clock_t t=  std::clock();
+			std::clock_t t2=  std::clock();
+			while(t2 - t  < 50000)
+			{
+				t2 = std::clock();
+			}
+			AudioPlayer::sharedAudioPlayer()->playSound(m_start_sound);
+			t=  std::clock();
+			t2=  std::clock();
+			while(t2 - t  < 250000)
+			{
+				t2 = std::clock();
+			}
 		}
 	}
 }
 
+bool StartScene::startGame()
+{
+	return m_start;
+}

@@ -15,6 +15,7 @@ class HUD
    public:
 
    	HUD (sf::RenderWindow* window, int level);
+      ~HUD();
 
 	 	void draw();
 	 	void update();
@@ -29,6 +30,7 @@ class HUD
 
       sf::Text m_levelLabel;
       sf::Text m_PauseLabel;
+      sf::Sprite m_PauseSprite;
       
       sf::Font m_font;
 

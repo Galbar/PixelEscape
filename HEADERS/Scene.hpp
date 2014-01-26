@@ -12,7 +12,7 @@ class Scene
 public:
     Scene();
     Scene(sf::RenderWindow* window);
-    ~Scene();
+    virtual ~Scene();
 
     virtual void update();
     virtual void draw();

@@ -3,10 +3,24 @@
 
 Game::Game(sf::RenderWindow* window)
 {
+    m_current_lvl = -1;
     m_window = window;
+    m_lvl_paths.push_back("data/levels/level1.png");
+    m_lvl_paths.push_back("data/levels/level2.png");
+    m_lvl_paths.push_back("data/levels/level3.png");
+    m_lvl_paths.push_back("data/levels/level4.png");
+    m_lvl_paths.push_back("data/levels/level5.png");
+    m_lvl_paths.push_back("data/levels/level6.png");
+    m_lvl_paths.push_back("data/levels/level7.png");
+    m_lvl_paths.push_back("data/levels/level8.png");
+    m_lvl_paths.push_back("data/levels/level9.png");
+    m_lvl_paths.push_back("data/levels/level10.png");
+    m_lvl_paths.push_back("data/levels/level11.png");
+    m_lvl_paths.push_back("data/levels/level12.png");
     m_lvl_paths.push_back("data/levels/level13.png");
+    m_lvl_paths.push_back("data/levels/level14.png");
 
-    Gsc = new GameScene(m_window, 1, m_lvl_paths[0]);
+    Gsc = NULL;
     Ssc = new StartScene(m_window);
 
     PlayerConfig cfg;
@@ -49,54 +63,78 @@ Game::~Game()
 
 void Game::execute()
 {
+    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+    a_p->stopMusic();
+    a_p->playMusic(m_music_start_scene);
+
     sf::Time music_offset;
+    sf::Time pause_music_offset;
     while(1)
     {
         // EVENTS
+        Input::s_input->update();
         sf::Event event;
-        if (m_window->pollEvent(event))
+        bool foo = false;
+        while (m_window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
             {
                 m_window->close();
-                break;
-            }
-            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-            {
-                m_window->close();
+                foo = true;
                 break;
             }
         }
+        if (foo) break;
 
         if (m_is_in_game_scene)
         {
-            if (Input::s_input->getKeyPressed(PAUSE))
+            if (Input::s_input->getKeyDown(PAUSE))
             {
                 if (m_paused)
                 {
-                    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+                    pause_music_offset = a_p->getMusicOffset();
                     a_p->stopMusic();
                     a_p->playMusic(m_music_playing);
                     a_p->setMusicOffset(music_offset);
                     Gsc->resume();
+                    m_paused = false;
                 }
                 else
                 {
-                    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
                     music_offset = a_p->getMusicOffset();
                     a_p->stopMusic();
-                    a_p->playMusic(m_music_paused);
+                    a_p->playMusic(m_music_paused, 25);
+                    a_p->setMusicOffset(pause_music_offset);
                     Gsc->pause();
+                    m_paused = true;
                 }
-                m_paused = !m_paused;
             }
+            bool need_to_reload = false;
+            bool next_level = false;
             if (!m_paused)
             {
                 Gsc->update();
+                if (Input::s_input->getKeyDown(RESTART) or Gsc->gameOver())
+                {
+                    need_to_reload = true;
+                }
+                if (Gsc->win())
+                {
+                    next_level = true;
+                }
             }
             m_window->clear();
             Gsc->draw();
             m_window->display();
+
+            if (need_to_reload)
+            {
+                reloadLevel();
+            }
+            if (next_level)
+            {
+                nextLevel();
+            }
         }
         else
         {
@@ -104,6 +142,52 @@ void Game::execute()
             m_window->clear();
             Ssc->draw();
             m_window->display();
+
+            if (Ssc->startGame())
+            {
+                m_is_in_game_scene = true;
+                nextLevel();
+            }
         }
     }
+}
+
+void Game::nextLevel()
+{
+    if (m_current_lvl < 0)
+    {
+        AudioPlayer::sharedAudioPlayer()->playMusic(m_music_playing);
+    }
+    m_current_lvl++;
+    std::clock_t t=  std::clock();
+    std::clock_t t2=  std::clock();
+    while(t2 - t  < 400000)
+    {
+        t2 = std::clock();
+    }
+    if (m_lvl_paths.size() <= m_current_lvl)
+    {
+        m_is_in_game_scene = false;
+        m_current_lvl = -1;
+        if (Ssc != NULL)
+            delete Ssc;
+        Ssc = new StartScene(m_window);
+        AudioPlayer::sharedAudioPlayer()->playMusic(m_music_start_scene);
+    }
+    else
+    {
+        if (Gsc != NULL)
+            delete Gsc;
+        Gsc = new GameScene(m_window, m_current_lvl+1, m_lvl_paths[m_current_lvl]);
+    }
+}
+
+void Game::reloadLevel()
+{
+    if (Gsc != NULL)
+    {
+        delete Gsc;
+        
+    }
+    Gsc = new GameScene(m_window, m_current_lvl+1, m_lvl_paths[m_current_lvl]);
 }

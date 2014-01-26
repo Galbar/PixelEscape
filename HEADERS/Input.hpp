@@ -32,7 +32,7 @@ struct PlayerConfig
 #define POINTERX 0
 #define POINTERY 1
 
-#define MAPPINGSIZE 13
+#define MAPPINGSIZE 15
 #define VALUESIZE 2
 
 class Input

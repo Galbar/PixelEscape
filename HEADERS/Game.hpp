@@ -29,6 +29,10 @@ private:
     bool m_paused;
     bool m_is_in_game_scene;
     
+    // Niveles
+    void nextLevel();
+    void reloadLevel();
+    int m_current_lvl;
 
     // Music
     int m_music_playing;
@@ -38,8 +42,6 @@ private:
 
     GameScene* Gsc;
     StartScene* Ssc;
-
-    int m_current_lvl;
 };
 
 

@@ -4,7 +4,6 @@
 #include "Scene.hpp"
 #include "Player.hpp"
 #include "Input.hpp"
-#include "AudioPlayer.hpp"
 #include "HUD.hpp"
 
 #include <vector>
@@ -136,12 +135,14 @@ class GameScene : public Scene
 public:
     GameScene();
     GameScene(sf::RenderWindow* window, const int lvl, const std::string& path);
-    ~GameScene();
+    virtual ~GameScene();
 
     virtual void update();
     virtual void draw();
     void pause();
     void resume();
+    bool gameOver();
+    bool win();
 
 private:
     TileMatrix m_map;
@@ -149,7 +150,8 @@ private:
     Player* m_player;
     int m_x_begin; // porque se lee mejor
     int m_y_begin;
-    Input m_input;
+    bool m_game_over;
+    bool m_win;
 
     HUD *m_hud;
 };

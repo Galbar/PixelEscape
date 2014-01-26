@@ -20,10 +20,11 @@ public:
 
     void draw();
     void update();
+    bool startGame();
 
 private:
 
- 
+    int m_start_sound;
 	std::vector<sf::RectangleShape> m_rectangles;
 
 	sf::Sprite m_title_sprite;
@@ -37,6 +38,7 @@ private:
 	float m_title_py;
 
 	sf::FloatRect m_playButtonRect;
+    bool m_start;
 
 };
 

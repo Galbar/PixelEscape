@@ -47,13 +47,15 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
 
     m_required_color = m_map[0][0];
     m_map[0][0] = Tile(sf::Color::White);
-
+    m_game_over = false;
+    m_win = false;
     m_player = new Player(m_x_begin, m_y_begin, m_window);
 }
 
 GameScene::~GameScene()
 {
     delete m_player;
+    delete m_hud;
 }
 
 void GameScene::update()
@@ -73,14 +75,13 @@ void GameScene::update()
 
     if (not (m_required_color.getMask() == (m_required_color.getMask() & m_player->getMask())))
     {
-        // GAME OVER!!
+        m_game_over = true;
     }
         
     if (m_map[m_player->getActivePos().x][m_player->getActivePos().y].is_end and
-        (m_required_color.getMask() == m_player->getMask()))
+        (m_required_color.getMask() == m_player->getActiveMask()))
     {
-
-        std::cerr << "HAS GANADO!!!" << std::endl;
+        m_win = true;
     }
    
     m_hud->update();
@@ -130,10 +131,20 @@ void GameScene::draw()
 
 void GameScene::pause()
 {
-   // m_hud->pause();
+    m_hud->pause();
 }
 
 void GameScene::resume()
 {
-   // m_hud->resume();
+    m_hud->resume();
+}
+
+bool GameScene::gameOver()
+{
+    return m_game_over;
+}
+
+bool GameScene::win()
+{
+    return m_win;
 }
