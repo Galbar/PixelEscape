@@ -13,6 +13,18 @@ int min(int a, int b)
     return b;
 }
 
+std::string itoa(int x)
+{
+    std::string res;
+    if (x == 0) res = "0";
+    while(x != 0)
+    {
+        res.insert(res.begin(), x%10 +'0');
+        x /= 10;
+    }
+    return res;
+}
+
 GameScene::GameScene()
 {
 
@@ -20,7 +32,6 @@ GameScene::GameScene()
 
 GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string& path) : Scene(window)
 {
-    m_hud = new HUD(window, lvl);
 
     ifstream lvl_info;
     lvl_info.open(path.c_str());
@@ -29,6 +40,13 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
         std::cerr << "[Game] Error al abrir info de nivel." << std::endl;
     }
     string s;
+
+    getline(lvl_info, s);
+    if (s == "")
+        m_hud = new HUD(window, itoa(lvl));
+    else
+        m_hud = new HUD(window, s);
+    
     getline(lvl_info, s);
     float t = atof(s.c_str());
     if (t > 0)

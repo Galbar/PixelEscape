@@ -1,18 +1,6 @@
 #include "HUD.hpp"
 
-std::string itoa(int x)
-{
-	std::string res;
-	if (x == 0) res = "0";
-	while(x != 0)
-	{
-		res.insert(res.begin(), x%10 +'0');
-		x /= 10;
-	}
-	return res;
-}
-
-HUD::HUD(sf::RenderWindow* window, int level)
+HUD::HUD(sf::RenderWindow* window, std::string name)
 {
 	m_window = window;
 
@@ -21,13 +9,11 @@ HUD::HUD(sf::RenderWindow* window, int level)
 		std::cerr << "[HUD] Fuente no encontrada." << std::endl;
 	}
 
-	std::string levelLabelString("level:" + itoa(level));
-
 	m_levelLabel.setFont(m_font);
-	m_levelLabel.setString(levelLabelString);
+	m_levelLabel.setString(name);
 	m_levelLabel.setCharacterSize(25);
 	m_levelLabel.setPosition(10,10);
-	m_levelLabel.setColor(sf::Color::Blue);
+	m_levelLabel.setColor(sf::Color(100,100,100));
 
 
 	m_PauseLabel.setFont(m_font);

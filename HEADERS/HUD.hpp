@@ -14,7 +14,7 @@ class HUD
 {
    public:
 
-   	HUD (sf::RenderWindow* window, int level);
+   	HUD (sf::RenderWindow* window, std::string name);
       ~HUD();
 
 	 	void draw();
