@@ -5,21 +5,20 @@ Game::Game(sf::RenderWindow* window)
 {
     m_current_lvl = -1;
     m_window = window;
-    m_lvl_paths.push_back("data/levels/level1.png");
-    m_lvl_paths.push_back("data/levels/level2.png");
-    m_lvl_paths.push_back("data/levels/level3.png");
-    m_lvl_paths.push_back("data/levels/level4.png");
-    m_lvl_paths.push_back("data/levels/level5.png");
-    m_lvl_paths.push_back("data/levels/level6.png");
-    m_lvl_paths.push_back("data/levels/level7.png");
-    m_lvl_paths.push_back("data/levels/level8.png");
-    m_lvl_paths.push_back("data/levels/level9.png");
-    m_lvl_paths.push_back("data/levels/level10.png");
-    m_lvl_paths.push_back("data/levels/level11.png");
-    m_lvl_paths.push_back("data/levels/level12.png");
-    m_lvl_paths.push_back("data/levels/level13.png");
-    m_lvl_paths.push_back("data/levels/level14.png");
-
+    ifstream lvl_list;
+    lvl_list.open("data/levels/info");
+    if (!lvl_list.good())
+    {
+        std::cerr << "[Game] Error al abrir info." << std::endl;
+    }
+    while (not lvl_list.eof())
+    {
+        string s;
+        getline(lvl_list, s);
+        m_lvl_paths.push_back("data/levels/" + s + ".PE");
+        std::cerr << s << std::endl;
+    }
+    std::cerr << "# lvls: " << m_lvl_paths.size() << std::endl;
     Gsc = NULL;
     Ssc = new StartScene(m_window);
 

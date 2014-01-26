@@ -5,7 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include <iostream>
 #include <string>
+#include <fstream>
 #include <vector>
 #include "AudioPlayer.hpp"
 #include "GameScene.hpp"

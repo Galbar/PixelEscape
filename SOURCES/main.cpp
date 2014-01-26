@@ -11,7 +11,7 @@
 int main()
 {
     sf::Music hola;
-    sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE, 32), "Project RGB", sf::Style::Default);
+    sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE, 32), "· Pixel Escape ·", sf::Style::Close|sf::Style::Titlebar);
 
     Game game(window);
 

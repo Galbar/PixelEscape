@@ -24,7 +24,7 @@ Player::Player(int x, int y, sf::RenderWindow* window)
 
     timer.restart();
     last_time = timer.getElapsedTime().asSeconds();
-    movementCooldownTime = 0.20;
+    movementCooldownTime = 0.15;
     movementCooldown = 0;
 
     m_r = Component(x, y);

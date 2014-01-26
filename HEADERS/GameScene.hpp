@@ -6,9 +6,11 @@
 #include "Input.hpp"
 #include "HUD.hpp"
 
-#include <vector>
+#include <string>
+#include <fstream>
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 #define WINDOW_SIZE 688
 #define TILE_COUNT 43
@@ -145,7 +147,12 @@ public:
     bool win();
 
 private:
-    TileMatrix m_map;
+    std::vector<TileMatrix> m_map;
+    int m_active_map;
+    bool m_is_dynamic;
+    int m_current_map_frame;
+    sf::Clock m_timer;
+    float m_dyn_shift; // cada cuantos segundos cambia el nivel
     Tile m_required_color;
     Player* m_player;
     int m_x_begin; // porque se lee mejor
