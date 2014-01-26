@@ -102,7 +102,7 @@ void Game::execute()
                 {
                     music_offset = a_p->getMusicOffset();
                     a_p->stopMusic();
-                    a_p->playMusic(m_music_paused);
+                    a_p->playMusic(m_music_paused, 50);
                     a_p->setMusicOffset(pause_music_offset);
                     Gsc->pause();
                     m_paused = true;
@@ -180,6 +180,12 @@ void Game::nextLevel()
     a_p->stopMusic();
     a_p->playMusic(m_music_playing, 100);
     a_p->setMusicOffset(music_offset);
+    if (m_current_lvl == m_lvl_paths.size()-1)
+    {  
+        AudioPlayer::sharedAudioPlayer()->stopMusic();
+        AudioPlayer::sharedAudioPlayer()->playMusic(m_music_final_boss);
+    }
+
     if (m_lvl_paths.size() <= m_current_lvl)
     {
         m_is_in_game_scene = false;
@@ -189,11 +195,6 @@ void Game::nextLevel()
         Ssc = new StartScene(m_window);
         AudioPlayer::sharedAudioPlayer()->playMusic(m_music_start_scene);
     }
-    /*else if (m_current_lvl == m_lvl_paths.size()-1)
-    {  
-        AudioPlayer::sharedAudioPlayer()->stopMusic();
-        AudioPlayer::sharedAudioPlayer()->playMusic(m_music_final_boss);
-    }*/
     else
     {
         if (Gsc != NULL)
