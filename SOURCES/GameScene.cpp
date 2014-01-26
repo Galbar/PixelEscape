@@ -43,7 +43,8 @@ GameScene::GameScene(sf::RenderWindow* window, const int lvl, const std::string&
     while (not lvl_info.eof())
     {
         getline(lvl_info, s);
-        
+        if (s == "")
+            continue;
         // Load and Parse the level
         sf::Image map_image;
         if (not map_image.loadFromFile(s))
