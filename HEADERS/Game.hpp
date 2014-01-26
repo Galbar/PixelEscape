@@ -41,6 +41,7 @@ private:
     int m_music_paused;
     int m_music_start_scene;
     int m_music_final_boss;
+    int m_sound_next_lvl;
 
     GameScene* Gsc;
     StartScene* Ssc;

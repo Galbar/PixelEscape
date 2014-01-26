@@ -17,9 +17,7 @@ Game::Game(sf::RenderWindow* window)
         getline(lvl_list, s);
         if (s != "")
             m_lvl_paths.push_back("data/levels/" + s + ".PE");
-        std::cerr << s << std::endl;
     }
-    std::cerr << "# lvls: " << m_lvl_paths.size() << std::endl;
     Gsc = NULL;
     Ssc = new StartScene(m_window);
 
@@ -52,6 +50,7 @@ Game::Game(sf::RenderWindow* window)
     m_music_paused = a_p->addMusic(std::string("data/audio/music/Cancion para pausa.wav"));
     m_music_playing = a_p->addMusic(std::string("data/audio/music/PrimerLevel.wav"));
     m_music_final_boss = a_p->addMusic(std::string("data/audio/music/Final Boss Song.wav"));
+    m_sound_next_lvl = a_p->addSound(std::string("data/audio/sound/NextLevel.wav"));
     a_p->stopMusic();
 }
 
@@ -103,7 +102,7 @@ void Game::execute()
                 {
                     music_offset = a_p->getMusicOffset();
                     a_p->stopMusic();
-                    a_p->playMusic(m_music_paused, 25);
+                    a_p->playMusic(m_music_paused);
                     a_p->setMusicOffset(pause_music_offset);
                     Gsc->pause();
                     m_paused = true;
@@ -161,10 +160,26 @@ void Game::nextLevel()
     m_current_lvl++;
     std::clock_t t=  std::clock();
     std::clock_t t2=  std::clock();
-    while(t2 - t  < 400000)
+    AudioPlayer* a_p = AudioPlayer::sharedAudioPlayer();
+    sf::Time music_offset = a_p->getMusicOffset();
+    a_p->stopMusic();
+    a_p->playMusic(m_music_playing, 50);
+    a_p->setMusicOffset(music_offset);
+    while(t2 - t  < 200000)
     {
         t2 = std::clock();
     }
+    a_p->playSound(m_sound_next_lvl);
+    t=  std::clock();
+    t2=  std::clock();
+    while(t2 - t  < 200000)
+    {
+        t2 = std::clock();
+    }
+    music_offset = a_p->getMusicOffset();
+    a_p->stopMusic();
+    a_p->playMusic(m_music_playing, 100);
+    a_p->setMusicOffset(music_offset);
     if (m_lvl_paths.size() <= m_current_lvl)
     {
         m_is_in_game_scene = false;
