@@ -117,7 +117,7 @@ void GameScene::update()
    
     m_hud->update();
 
-    if (m_timer.getElapsedTime().asSeconds() > m_dyn_shift-(m_dyn_shift/4))
+    if (m_is_dynamic and m_timer.getElapsedTime().asSeconds() > m_dyn_shift-(m_dyn_shift/4))
     {
         offset++;
         offset%=4;
