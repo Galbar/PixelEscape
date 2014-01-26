@@ -15,7 +15,8 @@ Game::Game(sf::RenderWindow* window)
     {
         string s;
         getline(lvl_list, s);
-        m_lvl_paths.push_back("data/levels/" + s + ".PE");
+        if (s != "")
+            m_lvl_paths.push_back("data/levels/" + s + ".PE");
         std::cerr << s << std::endl;
     }
     std::cerr << "# lvls: " << m_lvl_paths.size() << std::endl;
