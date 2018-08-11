@@ -3,6 +3,8 @@ Pixel Escape
 
 Game for the GAME JAM BARCELONA 2014
 
+[![Pixel Escape (Global Game Jam Barcelona 2014)](http://img.youtube.com/vi/SEvqcPHTFTI/0.jpg)](https://youtu.be/SEvqcPHTFTI "Pixel Escape (Global Game Jam Barcelona 2014")
+
 INSTRUCTIONS
 ------------
 You control a pixel in a colored level divided by cells. The pixel is divided into 3 colors: red, green and blue. A color is killed if it runs over a cell which contains its same color. By combining the 3 colors, we can get a total of 7 possible colors: red, green, blue, cyan, magenta, yellow and white, being the last four a combination of the 3 basic colors. The objective is to get to the goal cell, marked in soft grey, with the color that the same cell indicates, being it one of the 7 colors written earlier.
